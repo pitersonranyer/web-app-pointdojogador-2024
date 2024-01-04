@@ -1,105 +1,81 @@
-<!-- <app-main-carousel [slides]="slides"></app-main-carousel>  -->
-
-<!-- <div fxLayout="row wrap" class="info-bar">
-  <div fxFlex="100" fxFlex.gt-md="25" fxFlex.gt-xs="50">
-    <mat-card class="light-block p-3" fxLayout="row" fxLayoutAlign="start center">
-      <mat-icon class="mat-icon-xlg text-muted m-0">pix</mat-icon>
-      <div class="content">
-        <p>PIX</p>
-        <span class="text-muted m-0">Pagamento via PIX</span>
-      </div>
-    </mat-card>
-  </div>
-  <div fxFlex="100" fxFlex.gt-md="25" fxFlex.gt-xs="50">
-    <mat-card class="light-block p-3" fxLayout="row" fxLayoutAlign="start center">
-      <mat-icon class="mat-icon-xlg text-muted m-0">local_shipping</mat-icon>
-      <div class="content">
-        <p>CARRINHO</p>
-        <span class="text-muted m-0">Adicione sua liga ao carrinho</span>
-      </div>
-    </mat-card>
-  </div>
-  <div fxFlex="100" fxFlex.gt-md="25" fxFlex.gt-xs="50">
-    <mat-card class="light-block p-3" fxLayout="row" fxLayoutAlign="start center">
-      <mat-icon class="mat-icon-xlg text-muted m-0">monetization_on</mat-icon>
-      <div class="content">
-        <p>PAGAMENTO</p>
-        <span class="text-muted m-0">Pagamento garantindo no final da rodada</span>
-      </div>
-    </mat-card>
-  </div>
-  <div fxFlex="100" fxFlex.gt-md="25" fxFlex.gt-xs="50">
-    <mat-card class="light-block p-3" fxLayout="row" fxLayoutAlign="start center">
-      <mat-icon class="mat-icon-xlg text-muted m-0">history</mat-icon>
-      <div class="content">
-        <p>ADM ONLINE</p>
-        <span class="text-muted m-0">CEL: (+55) 61 98210-4100</span>
-      </div>
-    </mat-card>
-  </div>
-</div> -->
-
-<!-- <app-banners [banners]="banners"></app-banners> -->
-
 <div class="panel">
   <p class="panel-title">Jogos</p>
-  <div class="card card-partida">
+
+  <div class="card card-partida" *ngFor="let team of partidas | slice:0:3">
     <div class="time">
-      <img class="escudo-time" src="https://s.sde.globo.com/media/organizations/2021/03/01/goias-65.png">
-      <p class="nome-time">Goiás</p>
+      <img class="escudo-time" src="{{team.escudosMandante}}">
+      <p class="nome-time">{{team.nomeMandante}}</p>
     </div>
     <div class="detalhes">
       <!---->
-      <p class="dia-horario">Dez., 6/12 - 19:00</p>
-      <p class="placar"> 1<span>X</span>0 </p>
+      <p class="dia-horario">{{team.dataPartida}} - {{team.horaPartida}}</p>
+      <p class="placar"> {{team.placar_oficial_mandante === null ? '-' : team.placar_oficial_mandante }}
+        <span class="xSpan">X</span>{{team.placar_oficial_visitante === null ? '-' : team.placar_oficial_visitante }}
+      </p>
       <!---->
-      <p class="status">Encerrado</p>
-      <p class="estadio">Hailé Pinheiro (Serrinha)</p>
+      <p class="status"> Encerrada </p>
+      <p class="estadio">{{team.local}}</p>
     </div>
     <div class="time">
-      <img class="escudo-time" src="https://s.sde.globo.com/media/organizations/2019/02/28/escudo65_1.png">
-      <p class="nome-time">América-MG</p>
+      <img class="escudo-time" src="{{team.escudosVisitante}}">
+      <p class="nome-time">{{team.nomeVisitante}}</p>
     </div>
+  </div>
+  
+   <a *ngIf="partidas.length" routerLink="/meuTimeCartola" class="orange-link" > Ver todas as partidas</a> 
+
+  <div *ngIf="!partidas.length" class="sem-dados">
+    <img src='assets/images/avatars/bola-de-futebol.png'> 
+     <p  >Lista de jogos não disponibilizada.</p>
   </div>
 
-  <div class="card card-partida">
-    <div class="time">
-      <img class="escudo-time" src="https://s.sde.globo.com/media/organizations/2014/04/14/fluminense_60x60.png">
-      <p class="nome-time">Fluminense</p>
-    </div>
-    <div class="detalhes">
-      <!---->
-      <p class="dia-horario">Dez., 6/12 - 21:30</p>
-      <p class="placar"> 2 <span>X</span> 3 </p>
-      <!---->
-      <p class="status">Em andamento</p>
-      <p class="estadio">Maracanã</p>
-    </div>
-    <div class="time">
-      <img class="escudo-time" src="https://s.sde.globo.com/media/organizations/2014/04/14/gremio_60x60.png">
-      <p class="nome-time">Gremio</p>
-    </div>
-  </div>
 </div>
 
+<div class="panel">
+  <p class="panel-title">Meus Times</p>
+  <div class="ng-star-inserted">
+    <div class="ng-star-inserted">
+      <div class="card card-time">
+        <div class="ordem-pontuacao">
+          <p class="ordem">1000°</p>
+          <!---->
+        </div><img class="escudo-time-cartola"
+          src="https://s3.glbimg.com/v1/AUTH_58d78b787ec34892b5aaa0c7a146155f/cartola_svg_185/escudo/f3/40/53/00c5aaf98b-57e7-475c-80e9-0770de77b6f320210429204053">
+        <div class="nome-time-criador">
+          <p class="time">app pointdojogador2</p>
+          <p class="criador">iOS e Android</p>
+        </div>
+        <div class="pontos">
+          <p class="total text-green">134,03</p>
+          <p class="pontuados">12/12</p>
+        </div>
+        <!---->
+      </div>
+    </div>
+    <!---->
+    <!---->
+  </div>
+  <a  routerLink="/meuTimeCartola" class="orange-link" > Ver todos os times</a>
+</div>
 
 <div class="panel">
-  <p class="panel-title">Grupos</p>
+  <p class="panel-title">Meus Grupos</p>
 
-  <div   class="card-grupo">             
-    <div   class="logo-grupo"><img   src='assets/images/avatars/grupo.png'></div>
-    <div   class="info-grupo">
-      <p   class="nome">teste</p>
-      <p   class="qtd-times">0 times</p>
+  <div class="card-grupo">
+    <div class="logo-grupo"><img src='assets/images/avatars/grupo.png'></div>
+    <div class="info-grupo">
+      <p class="nome">teste</p>
+      <p class="qtd-times">0 times</p>
     </div>
     <!---->
   </div>
 
+  <a routerLink="/meuGrupoCartola" class="orange-link" > Ver todos os grupos</a>   
 
 </div>
 
 <div class="panel">
-  <p class="panel-title">TOP 10 dos mais pontuados</p>
+  <p class="panel-title">Atletas Pontuados</p>
 
 
   <div class="card-jogador">
@@ -153,33 +129,6 @@
     </div>
   </div>
 
+  <a routerLink="/atletaPontuadoCartola" class="orange-link" > Ver todos os jogadores</a>
 
 </div>
-
-<div class="panel">
-  <p class="panel-title">Meus Times</p>
-  <div class="ng-star-inserted">
-    <div class="ng-star-inserted">
-      <div class="card card-time">
-        <div class="ordem-pontuacao">
-          <p class="ordem">1000°</p>
-          <!---->
-        </div><img class="escudo-time-cartola"
-          src="https://s3.glbimg.com/v1/AUTH_58d78b787ec34892b5aaa0c7a146155f/cartola_svg_185/escudo/f3/40/53/00c5aaf98b-57e7-475c-80e9-0770de77b6f320210429204053">
-        <div class="nome-time-criador">
-          <p class="time">app pointdojogador2</p>
-          <p class="criador">iOS e Android</p>
-        </div>
-        <div class="pontos">
-          <p class="total text-green">134,03</p>
-          <p class="pontuados">12/12</p>
-        </div>
-        <!---->
-      </div>
-    </div>
-    <!---->
-    <!---->
-  </div>
-</div>
-
-

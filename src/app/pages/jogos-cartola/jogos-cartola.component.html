@@ -1,0 +1,22 @@
+<div class="panel">
+  <div class="card card-partida" *ngFor="let team of partidas">
+    <div class="time">
+      <img class="escudo-time" src="{{team.escudosMandante}}">
+      <p class="nome-time">{{team.nomeMandante}}</p>
+    </div>
+    <div class="detalhes">
+      <!---->
+      <p class="dia-horario">{{team.dataPartida}} - {{team.horaPartida}}</p>
+      <p class="placar"> {{team.placar_oficial_mandante === null ? '-' : team.placar_oficial_mandante }}
+        <span class="xSpan">X</span>{{team.placar_oficial_visitante === null ? '-' : team.placar_oficial_visitante }}
+      </p>
+      <!---->
+      <p class="status"> Encerrada </p>
+      <p class="estadio">{{team.local}}</p>
+    </div>
+    <div class="time">
+      <img class="escudo-time" src="{{team.escudosVisitante}}">
+      <p class="nome-time">{{team.nomeVisitante}}</p>
+    </div>
+  </div>
+</div>

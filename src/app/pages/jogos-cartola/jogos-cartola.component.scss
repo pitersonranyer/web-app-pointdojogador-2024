@@ -1,0 +1,76 @@
+.panel {
+    position: relative;
+    background: HSL(0, 0%, 100%);
+    padding: 25px 15px 70px;
+    border-radius: 16px;
+    margin: 20px 0;
+    color: HSL(0, 0%, 47.8%);
+    box-shadow: 0 1px 2px #00000040;
+    min-height: 200px;
+}
+
+.panel-title {
+    font-weight: 700;
+    margin-top: 0;
+    color: HSL(0, 0%, 47.8%);
+}
+.card-partida.card {
+    justify-content: center;
+}
+.card {
+    background: HSL(0, 0%, 100%);
+    border-radius: 8px;
+    box-shadow: 0 0 4px #00000040;
+    color: HSL(0, 0%, 47.8%);
+    padding: 15px;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.time {
+    text-align: center;
+    width: 120px;
+}
+
+.escudo-time {
+   /*  width: 45px; */
+    height: auto;
+    margin-top: 10px;
+}
+
+.nome-time{
+    font-weight: 700;
+    color: hsl(0, 0%, 0%);
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.detalhes {
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: hsl(0, 0%, 40.8%);
+    margin: 0 25px;
+}
+
+.dia-horario {
+    margin-bottom: 0;
+}
+
+.placar{
+    font-size: 1.5rem;
+    color: hsl(0, 0%, 0%);
+}
+
+.xSpan {
+    margin: 0 10px;
+}
+
+.estadio{
+    margin-top: 10px;
+}
+
+.status{
+    color: green;
+}

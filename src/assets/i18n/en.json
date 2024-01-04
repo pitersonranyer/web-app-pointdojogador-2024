@@ -24,7 +24,11 @@
     "MENU_ITEM": "Menu Item",
     "CONTACT": "Contact",
     "ABOUT_US": "About Us",
-    "ADMIN": "Admin Panel"
+    "ADMIN": "Admin Panel",
+    "JOGOS_CARTOLA": "Jogos Cartola",
+    "MEU_TIME_CARTOLA": "Meus Times",
+    "MEU_GRUPO_CARTOLA": "Meus Grupos",
+    "ATLETAS_PONTUADOS_CARTOLA": "Atletas Pontuados"
   },
   "ADMIN_NAV": {  
     "DASHBOARD": "Dashboard",  

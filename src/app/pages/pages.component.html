@@ -72,7 +72,7 @@
                                     <b><a [routerLink]="['/cart']" class="text-muted">VER CARRINHO</a></b>
                                 </div>
                                 <div class="divider mt-1"></div>
-                                <div *ngIf="appService.Data.totalCartCount == 0" class="py-1 text-muted text-center">You have no items in your shopping cart.</div>
+                                <div *ngIf="appService.Data.totalCartCount == 0" class="py-1 text-muted text-center">Você não tem itens no seu carrinho.</div>
                                
                                 <ng-container *ngFor="let product of appService.Data.cartList">
                                     <div fxLayout="row" fxLayoutAlign="space-between center" class="text-muted list-item">

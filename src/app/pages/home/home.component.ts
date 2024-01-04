@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AppService } from '../../app.service';
 import { Product } from "../../app.models";
+import { ApiCartolaService } from 'src/app/service/api.cartola';
+import { UtilService } from 'src/app/service/util.service';
 
 @Component({
   selector: 'app-home',
@@ -17,58 +18,28 @@ export class HomeComponent implements OnInit {
     { title: 'The biggest sale', subtitle: 'Special for today', image: 'assets/images/carousel/banner5.jpg' }
   ];
 
-  public brands = [];
-  public banners = [];
-  public featuredProducts: Array<Product>;
-  public onSaleProducts: Array<Product>;
-  public topRatedProducts: Array<Product>;
-  public newArrivalsProducts: Array<Product>;
+  
+  partidas = [];
 
-
-  constructor(public appService:AppService) { }
+  constructor(private apiCartolaService: ApiCartolaService,
+    private ordernar: UtilService,    
+  ) { }
 
   ngOnInit() {
-    this.getBanners();
-    this.getProducts("featured");
-    this.getBrands();
+
+    this.listarPartidas()
+    
   }
 
-  public onLinkClick(e){
-    this.getProducts(e.tab.textLabel.toLowerCase()); 
-  }
+  listarPartidas() {
 
-  public getProducts(type){
-    if(type == "featured" && !this.featuredProducts){
-      this.appService.getProducts("featured").subscribe(data=>{
-        this.featuredProducts = data;      
-      }) 
-    }
-    if(type == "on sale" && !this.onSaleProducts){
-      this.appService.getProducts("on-sale").subscribe(data=>{
-        this.onSaleProducts = data;      
+    this.apiCartolaService.listarPartidasRodada()
+      .subscribe((resPartidas) => {
+        
+        this.partidas = this.ordernar.ordenarObjetoArray(resPartidas, 'partida_data');
+       
       })
-    }
-    if(type == "top rated" && !this.topRatedProducts){
-      this.appService.getProducts("top-rated").subscribe(data=>{
-        this.topRatedProducts = data;      
-      })
-    }
-    if(type == "new arrivals" && !this.newArrivalsProducts){
-      this.appService.getProducts("new-arrivals").subscribe(data=>{
-        this.newArrivalsProducts = data;      
-      })
-    }
-   
-  }
 
-  public getBanners(){
-    this.appService.getBanners().subscribe(data=>{
-      this.banners = data;
-    })
-  }
-
-  public getBrands(){
-    this.brands = this.appService.getBrands();
   }
 
 }
