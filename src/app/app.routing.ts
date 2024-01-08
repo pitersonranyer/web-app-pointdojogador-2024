@@ -15,6 +15,8 @@ export const routes: Routes = [
             { path: 'meuTimeCartola', loadChildren: () => import('./pages/meu-time-cartola/meu-time-cartola.module').then(m => m.MeuTimeCartolaModule), data: { breadcrumb: 'Meus Times' } },
             { path: 'meuGrupoCartola', loadChildren: () => import('./pages/meu-grupo-cartola/meu-grupo-cartola.module').then(m => m.MeuGrupoCartolaModule), data: { breadcrumb: 'Meus Grupos' } },
             { path: 'atletaPontuadoCartola', loadChildren: () => import('./pages/atleta-pontuado-cartola/atleta-pontuado-cartola.module').then(m => m.AtletaPontuadoCartolaModule), data: { breadcrumb: 'Atletas Pontuados' } },
+            { path: 'addTimeGrupoCartola', loadChildren: () => import('./pages/add-time-grupo-cartola/add-time-grupo-cartola.module').then(m => m.AddTimeGrupoCartolaModule), data: { breadcrumb: 'Adicionar Time' } },
+            { path: 'listarTimeGrupoCartola', loadChildren: () => import('./pages/listar-time-grupo-cartola/listar-time-grupo-cartola.module').then(m => m.ListarTimeGrupoCartolaModule), data: { breadcrumb: 'Listar Time' } },
             { path: 'sign-in', loadChildren: () => import('./pages/sign-in/sign-in.module').then(m => m.SignInModule), data: { breadcrumb: 'Sign In ' } },
         ]
     },
