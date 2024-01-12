@@ -2,13 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
-import { SharedModule } from '../../shared/shared.module';
-import { MeuTimeCartolaComponent } from './meu-time-cartola.component';
-
+import { SharedModule } from '../../../shared/shared.module';
+import { ListarTimeGrupoCartolaComponent } from './listar-time-grupo-cartola.component';
 
 
 export const routes: Routes = [
-  { path: '', component: MeuTimeCartolaComponent, pathMatch: 'full' }
+  { path: '', component: ListarTimeGrupoCartolaComponent, pathMatch: 'full' }
 ];
 
 @NgModule({
@@ -19,7 +18,7 @@ export const routes: Routes = [
     SharedModule
   ],
   declarations: [
-    MeuTimeCartolaComponent
+    ListarTimeGrupoCartolaComponent
   ]
 })
-export class MeuTimeCartolaModule { }
+export class ListarTimeGrupoCartolaModule { }

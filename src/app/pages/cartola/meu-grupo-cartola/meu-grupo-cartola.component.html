@@ -1,7 +1,8 @@
 <div class="panel">
 
-  <div class="example-button-row">
 
+  <mat-card-actions align="end">
+  
     <button mat-button color="primary">
       <mat-icon>add</mat-icon>
       Criar
@@ -12,9 +13,10 @@
       Importar
     </button>
 
-  </div>
+  </mat-card-actions>
 
-  <div class="card-grupo" routerLink="/listarTimeGrupoCartola">
+
+  <div class="card-grupo" [routerLink]="['/listarTimeGrupoCartola']">
     <div class="logo-grupo"><img src='assets/images/avatars/grupo.png'></div>
     <div class="info-grupo">
       <p class="nome">teste</p>

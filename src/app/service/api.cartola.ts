@@ -16,6 +16,11 @@ import { UtilService } from './util.service';
         const url = this.utilService.getUrlBackend() + `/cartolaAPI/listarPartidasRodada`;
         return this.http.get<any[]>(url);
       }
+
+      listarTimesCartolaPorNome(nomeTime: string): Observable<any[]> {
+        const url = this.utilService.getUrlBackend() + `/cartolaAPI/ListarTimeCartolaListNome/${nomeTime}`;
+        return this.http.get<any[]>(url);
+      }
      
 
   }

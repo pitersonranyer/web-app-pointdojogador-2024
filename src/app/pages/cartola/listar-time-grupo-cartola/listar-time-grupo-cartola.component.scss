@@ -1,3 +1,20 @@
+.panel {
+    position: relative;
+    background: HSL(0, 0%, 100%);
+    padding: 25px 15px 70px;
+    border-radius: 16px;
+    margin: 20px 0;
+    color: HSL(0, 0%, 47.8%);
+    box-shadow: 0 1px 2px #00000040;
+    min-height: 200px;
+}
+
+.panel-title {
+    font-weight: 700;
+    margin-top: 0;
+    color: HSL(0, 0%, 47.8%);
+}
+
 /* time */
 .card-time {
     background: white;
@@ -50,5 +67,4 @@
 .text-green {
     color: HSL(145.3, 63.4%, 41.8%) !important;
 }
-
 
