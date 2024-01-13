@@ -33,7 +33,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/browser",
+            "outputPath": "dist/web-app-pointdojogador-2024",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -176,5 +176,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "5db56df7-0b30-4409-8aa3-1fc41b582fd5"
   }
 }

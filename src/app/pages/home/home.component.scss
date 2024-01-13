@@ -44,53 +44,62 @@
     align-items: center;
     cursor: pointer;
 }
+
+/* jogos */
+
 .time {
-    text-align: center;
-    width: 120px;
+  text-align: center;
+  width: 120px;
 }
 
 .escudo-time {
-   /*  width: 45px; */
-    height: auto;
-    margin-top: 10px;
+ /*  width: 45px; */
+  height: auto;
+  margin-top: 10px;
 }
 
 .nome-time{
-    font-weight: 700;
-    color: hsl(0, 0%, 0%);
-    margin: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  font-weight: 700;
+  color: hsl(0, 0%, 0%);
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 0.7rem;
+
 }
 .detalhes {
-    text-align: center;
-    font-size: 0.8rem;
-    font-weight: 400;
-    color: hsl(0, 0%, 40.8%);
-    margin: 0 25px;
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: hsl(0, 0%, 40.8%);
+  margin: 0 25px;
 }
 
 .dia-horario {
-    margin-bottom: 0;
+  margin-bottom: 0;
+  font-size: 0.7rem;
 }
 
 .placar{
-    font-size: 1.5rem;
-    color: hsl(0, 0%, 0%);
+  font-size: 1.0rem;
+  color: hsl(0, 0%, 0%);
 }
 
 .xSpan {
-    margin: 0 10px;
+  margin: 0 10px;
 }
 
 .estadio{
-    margin-top: 10px;
+  margin-top: 10px;
+  font-size: 0.7rem;
 }
 
 .status{
-    color: green;
+  color: green;
+  font-size: 0.8rem;
 }
 
+/* outros */
 .orange-link {
     display: block;
     text-align: center;

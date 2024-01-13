@@ -45,6 +45,8 @@
     margin: 0;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-size: 0.7rem;
+
 }
 .detalhes {
     text-align: center;
@@ -59,7 +61,7 @@
 }
 
 .placar{
-    font-size: 1.5rem;
+    font-size: 1.0rem;
     color: hsl(0, 0%, 0%);
 }
 
@@ -69,8 +71,10 @@
 
 .estadio{
     margin-top: 10px;
+    font-size: 0.7rem;
 }
 
 .status{
     color: green;
+    font-size: 0.8rem;
 }

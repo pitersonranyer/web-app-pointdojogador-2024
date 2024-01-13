@@ -2,7 +2,13 @@ import { SidenavMenu } from './sidenav-menu.model';
 
 export const sidenavMenuItems = [ 
     new SidenavMenu (1, 'NAV.HOME', '/', null, null, false, 0),
-    new SidenavMenu (2, 'Fashion', null, null, null, true, 0), 
+    new SidenavMenu (2, 'Cartola', null, null, null, true, 0), 
+    new SidenavMenu (10, 'Jogos', '/jogosCartola', null, null, false, 2), 
+    new SidenavMenu (10, 'Meus Times', '/meuTimeCartola', null, null, false, 2),
+    new SidenavMenu (10, 'Meus Grupos', '/meuGrupoCartola', null, null, false, 2),   
+    new SidenavMenu (10, 'Atletas Pontuados', '/atletaPontuadoCartola', null, null, false, 2),   
+
+   /*  new SidenavMenu (2, 'Fashion', null, null, null, true, 0), 
     new SidenavMenu (10, 'Women', null, null, null, true, 2),   
     new SidenavMenu (11, 'Dresses & Skirts', '/products/dresses & skirts', null, null, false, 10),
     new SidenavMenu (12, 'Jackets', '/products/jackets', null, null, false, 10),
@@ -44,5 +50,5 @@ export const sidenavMenuItems = [
     new SidenavMenu (142, 'Level 3', null, null, null, true, 141),
     new SidenavMenu (143, 'Level 4', null, null, null, true, 142),
     new SidenavMenu (144, 'Level 5', null, 'http://themeseason.com', null, false, 143),
-    new SidenavMenu (200, 'NAV.EXTERNAL_LINK', null, 'http://themeseason.com', '_blank', false, 0)
+    new SidenavMenu (200, 'NAV.EXTERNAL_LINK', null, 'http://themeseason.com', '_blank', false, 0) */
 ]
