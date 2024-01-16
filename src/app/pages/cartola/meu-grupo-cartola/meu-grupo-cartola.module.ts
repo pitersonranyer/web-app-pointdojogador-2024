@@ -4,6 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../../shared/shared.module';
 import { MeuGrupoCartolaComponent } from './meu-grupo-cartola.component';
+import { CriaGrpoDialogComponent } from './cria-grupo-dialog/cria-grupo-dialog.component';
+import { ImportaGrpoDialogComponent } from './importa-grupo-dialog/importa-grupo-dialog.component';
 
 
 export const routes: Routes = [
@@ -20,6 +22,8 @@ export const routes: Routes = [
   ],
   declarations: [
     MeuGrupoCartolaComponent,
+    CriaGrpoDialogComponent,
+    ImportaGrpoDialogComponent
   ]
 })
 export class MeuGrupoCartolaModule { }

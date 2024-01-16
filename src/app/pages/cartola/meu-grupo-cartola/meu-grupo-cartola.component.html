@@ -3,12 +3,12 @@
 
   <mat-card-actions align="end">
   
-    <button mat-button color="primary">
+    <button mat-button color="primary" (click)="openCriaDialog(null)">
       <mat-icon>add</mat-icon>
       Criar
     </button>
 
-    <button mat-button>
+    <button mat-button (click)="openImportaDialog(null)">
       <mat-icon>get_app</mat-icon>
       Importar
     </button>
