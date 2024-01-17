@@ -4,6 +4,7 @@ import { AppSettings, Settings } from 'src/app/app.settings';
 import { CriaGrpoDialogComponent } from './cria-grupo-dialog/cria-grupo-dialog.component';
 import { ImportaGrpoDialogComponent } from './importa-grupo-dialog/importa-grupo-dialog.component';
 import { ApiCartolaService } from 'src/app/service/api.cartola';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -18,7 +19,8 @@ export class MeuGrupoCartolaComponent implements OnInit {
   public settings: Settings;
   constructor(public dialog: MatDialog,
     public appSettings: AppSettings,
-    private apiCartolaService: ApiCartolaService) {
+    private apiCartolaService: ApiCartolaService,
+    private router: Router) {
     this.settings = this.appSettings.settings;
   }
 
@@ -94,5 +96,11 @@ export class MeuGrupoCartolaComponent implements OnInit {
     });
   }
 
+
+  listarTimeGrupoCartola(grupo: any){
+  
+    this.router.navigate(['/listarTimeGrupoCartola'],  { queryParams: grupo } );
+
+  } 
 
 }

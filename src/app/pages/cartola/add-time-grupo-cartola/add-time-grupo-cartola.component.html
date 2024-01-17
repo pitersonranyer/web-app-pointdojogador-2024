@@ -1,5 +1,13 @@
 <div class="panel">
 
+  <mat-card-actions>
+    <button mat-button (click)="listarTimeGrupoCartola()">
+      <mat-icon>keyboard_return</mat-icon>
+      {{nome_grupo}}
+    </button>
+    
+  </mat-card-actions>
+
   <mat-form-field appearance="outline">
     <mat-label>Buscar times</mat-label>
     <input matInput [(ngModel)]="nomeTime">
@@ -11,9 +19,9 @@
   <mat-divider></mat-divider>
 
 
-  <div class="card card-time" *ngFor="let time of times">
+  <div class="card card-time" *ngFor="let time of times; let i = index">
     <div class="ordem-pontuacao">
-      <p class="ordem">1°</p>
+      <p class="ordem">{{i + 1}}º</p>
       <!---->
     </div><img class="escudo-time-cartola" src="{{time.url_escudo_png}}">
     <div class="nome-time-criador">

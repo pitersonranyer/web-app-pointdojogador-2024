@@ -3,12 +3,12 @@
   <mat-card-actions align="end">
     <button mat-button  routerLink="/meuGrupoCartola">
       <mat-icon>keyboard_return</mat-icon>
-      Voltar
+      {{nome_grupo}}
     </button>
 
     <div fxFlex></div>
 
-    <button mat-button color="primary" routerLink="/addTimeGrupoCartola">
+    <button mat-button color="primary" (click)="addTimeGrupo()" >
       <mat-icon>add</mat-icon>
       Buscar
     </button>
