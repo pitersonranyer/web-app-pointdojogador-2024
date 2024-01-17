@@ -7,11 +7,11 @@ export class UtilService {
 
   getUrlBackend() {
     const url = window.location.href;
- //   if (url.match(/localhost/)) {
- //     return 'http://localhost:3000';
- //   } else {
+    if (url.match(/localhost/)) {
+      return 'http://localhost:3000';
+    } else {
       return 'https://api.pointdojogador.com.br';
- //   }
+    }
   }
 
   /**

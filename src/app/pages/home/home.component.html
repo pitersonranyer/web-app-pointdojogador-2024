@@ -61,16 +61,25 @@
 <div class="panel">
   <p class="panel-title">Meus Grupos</p>
 
-  <div class="card-grupo" routerLink="/listarTimeGrupoCartola">
+  <div class="card-grupo"  *ngFor="let grupo of grupos | slice:0:3">
     <div class="logo-grupo"><img src='assets/images/avatars/grupo.png'></div>
-    <div class="info-grupo">
-      <p class="nome">teste</p>
+    <div class="info-grupo" [routerLink]="['/listarTimeGrupoCartola']">
+      <p class="nome">{{grupo.nome_grupo}}</p>
       <p class="qtd-times">0 times</p>
     </div>
-    <!---->
+ 
+    
   </div>
 
-  <a routerLink="/meuGrupoCartola" class="orange-link" > Ver todos os grupos</a>   
+  <div *ngIf="!grupos.length" class="sem-dados">
+    <img src='assets/images/avatars/bola-de-futebol.png'> 
+     <p  >Você ainda não possui grupos.</p>
+     <p  > <a routerLink="/meuGrupoCartola" class="orange-link" > Ir para grupos</a> </p>
+  </div>
+
+  
+
+  <a *ngIf="grupos.length" routerLink="/meuGrupoCartola" class="orange-link" > Ver todos os grupos</a> 
 
 </div>
 

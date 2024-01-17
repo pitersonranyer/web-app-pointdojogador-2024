@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit {
 
   
   partidas = [];
+  grupos = [];
 
   constructor(private apiCartolaService: ApiCartolaService,
     private ordernar: UtilService,    
@@ -27,7 +28,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
 
-    this.listarPartidas()
+    this.listarPartidas();
+    this.listarGruposUsuario();
     
   }
 
@@ -38,6 +40,17 @@ export class HomeComponent implements OnInit {
         
         this.partidas = this.ordernar.ordenarObjetoArray(resPartidas, 'partida_data');
        
+      })
+
+  }
+
+  listarGruposUsuario() {
+
+    this.apiCartolaService.listarTodosGruposUsuario(1)
+      .subscribe((resGrupos) => {
+
+        this.grupos = resGrupos;
+
       })
 
   }

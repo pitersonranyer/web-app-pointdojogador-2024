@@ -3,7 +3,7 @@
 
   <mat-card-actions align="end">
   
-    <button mat-button color="primary" (click)="openCriaDialog(null)">
+    <button mat-button color="primary" (click)="openCriaDialog()">
       <mat-icon>add</mat-icon>
       Criar
     </button>
@@ -16,12 +16,21 @@
   </mat-card-actions>
 
 
-  <div class="card-grupo" [routerLink]="['/listarTimeGrupoCartola']">
+  <div class="card-grupo"  *ngFor="let grupo of grupos">
     <div class="logo-grupo"><img src='assets/images/avatars/grupo.png'></div>
-    <div class="info-grupo">
-      <p class="nome">teste</p>
+    <div class="info-grupo" [routerLink]="['/listarTimeGrupoCartola']">
+      <p class="nome">{{grupo.nome_grupo}}</p>
       <p class="qtd-times">0 times</p>
     </div>
+
+    <div class="iconAdd">
+      <mat-icon color="warn"  (click)="excluirGrupo(grupo)" >delete</mat-icon>
+    </div>
+  </div>
+
+  <div *ngIf="!grupos.length" class="sem-dados">
+    <img src='assets/images/avatars/bola-de-futebol.png'> 
+     <p  >Você ainda não possui grupos.</p>
   </div>
 
 
