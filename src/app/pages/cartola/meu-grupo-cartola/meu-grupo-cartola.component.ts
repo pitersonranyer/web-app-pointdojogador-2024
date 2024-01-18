@@ -71,36 +71,41 @@ export class MeuGrupoCartolaComponent implements OnInit {
     });
   }
 
-  public openImportaDialog(data: any) {
+  public openImportaDialog() {
     const dialogRef = this.dialog.open(ImportaGrpoDialogComponent, {
       data: {
-        category: data,
-        categories: []
+        usuario_id: 1,
       },
       panelClass: ['theme-dialog'],
       autoFocus: false,
       direction: (this.settings.rtl) ? 'rtl' : 'ltr'
     });
-    dialogRef.afterClosed().subscribe(category => {
-      if (category) {
-        /*  const index: number = this.categories.findIndex(x => x.id == category.id);
-          if(index !== -1){
-            this.categories[index] = category;
-          } 
-          else{ 
-            let last_category = this.categories[this.categories.length - 1]; 
-            category.id = last_category.id + 1;
-            this.categories.push(category);  
-          } */
+    dialogRef.afterClosed().subscribe(importGroup => {
+      if (importGroup) {
+        console.log('grupo', importGroup);
+      
+
+        let parm = {
+          grupo_id: importGroup.grupo_id,
+          nome_grupo: importGroup.nome_grupo,
+          usuario_id: importGroup.usuario_id,
+          slugs:  importGroup.arraySlugs,
+        }
+
+        this.apiCartolaService.importarGrupoCartola(parm)
+          .subscribe((times) => {
+            console.log(times);
+          })
+        
       }
     });
   }
 
 
-  listarTimeGrupoCartola(grupo: any){
-  
-    this.router.navigate(['/listarTimeGrupoCartola'],  { queryParams: grupo } );
+  listarTimeGrupoCartola(grupo: any) {
 
-  } 
+    this.router.navigate(['/listarTimeGrupoCartola'], { queryParams: grupo });
+
+  }
 
 }
