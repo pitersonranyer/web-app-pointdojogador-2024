@@ -29,8 +29,15 @@
       <p class="criador">{{time.nome_cartola}}</p>
     </div>
 
-    
-      <mat-icon class="iconAdd">add</mat-icon>
+    <div *ngIf="time.achou" class="iconAdd" >
+      <mat-icon >block</mat-icon>
+    </div>
+
+    <div *ngIf="!time.achou" class="iconAdd">
+      <mat-icon  style="-webkit-text-fill-color:blue"  *ngIf="!time.inPoint" (click)="addTimeGrupo(time)">add</mat-icon>
+      <mat-icon  style="-webkit-text-fill-color:green"  *ngIf="time.inPoint"  (click)="addTimeGrupo(time)">check</mat-icon>
+    </div>
+
     
 
   </div>

@@ -17,8 +17,8 @@ export class ApiCartolaService {
     return this.http.get<any[]>(url);
   }
 
-  listarTimesCartolaPorNome(nomeTime: string): Observable<any[]> {
-    const url = this.utilService.getUrlBackend() + `/cartolaAPI/ListarTimeCartolaListNome/${nomeTime}`;
+  buscarTimesPorNomeGrupo(grupo_id: number, nomeTime: string): Observable<any[]> {
+    const url = this.utilService.getUrlBackend() + `/grupoCartola/buscarTimesPorNomeGrupo/${grupo_id}/${nomeTime}`;
     return this.http.get<any[]>(url);
   }
 
@@ -38,22 +38,21 @@ export class ApiCartolaService {
     return this.http.post<any>(url, grupo);
   }
 
-  /*     listartTimeCartolaListId(slugs: any) {
-        const url = this.utilService.getUrlBackend() + `/cartolaAPI/listartTimeCartolaListId`;
-        return this.http.post<any[]>(url, slugs);
-      }
- */
-
   importarGrupoCartola(parm: any) {
     const url = this.utilService.getUrlBackend() + `/grupoCartola/importarGrupoCartola`;
     return this.http.post<any[]>(url, parm);
   }
 
-
-  
+ 
   listarTimeGrupoUsuario(grupo_id: number, usuario_id: number): Observable<any[]> {
     const url = this.utilService.getUrlBackend() + `/grupoCartola/listarTimeGrupoUsuario/${grupo_id}/${usuario_id}`;
     return this.http.get<any[]>(url);
+  }
+
+
+  addTimeGrupo(parm: any) {
+    const url = this.utilService.getUrlBackend() + `/grupoCartola/addTimeGrupo`;
+    return this.http.post<any>(url, parm);
   }
 
 }

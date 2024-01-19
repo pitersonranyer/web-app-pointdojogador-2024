@@ -15,7 +15,7 @@ export class AddTimeGrupoCartolaComponent implements OnInit {
   nome_grupo = '';
   grupo: any;
 
-  constructor(private listarTimesCartola: ApiCartolaService,
+  constructor(private apiCartolaService: ApiCartolaService,
     private route: ActivatedRoute,
     private router: Router) { }
 
@@ -34,7 +34,7 @@ export class AddTimeGrupoCartolaComponent implements OnInit {
 
     let nomeTimeSemAcento = this.nomeTime.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
 
-    this.listarTimesCartola.listarTimesCartolaPorNome(nomeTimeSemAcento)
+    this.apiCartolaService.buscarTimesPorNomeGrupo(this.grupo.grupo_id, nomeTimeSemAcento)
       .subscribe((listaTimes) => {
         this.times = listaTimes;
       });
@@ -48,5 +48,21 @@ export class AddTimeGrupoCartolaComponent implements OnInit {
   } 
 
 
+  addTimeGrupo(time: any){
+
+    time.grupo_id = this.grupo.grupo_id;
+
+     this.apiCartolaService.addTimeGrupo(time)
+      .subscribe(() => {
+        for (let i = 0; i < this.times.length; i++) {
+          if (time.time_id === this.times[i].time_id) {
+            this.times[i].inPoint = true;
+          }
+        }
+      }); 
+
+  } 
+
+  
 
 }
