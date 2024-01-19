@@ -50,6 +50,10 @@ export class ApiCartolaService {
   }
 
 
-
+  
+  listarTimeGrupoUsuario(grupo_id: number, usuario_id: number): Observable<any[]> {
+    const url = this.utilService.getUrlBackend() + `/grupoCartola/listarTimeGrupoUsuario/${grupo_id}/${usuario_id}`;
+    return this.http.get<any[]>(url);
+  }
 
 }

@@ -63,9 +63,9 @@
 
   <div class="card-grupo"  *ngFor="let grupo of grupos | slice:0:3">
     <div class="logo-grupo"><img src='assets/images/avatars/grupo.png'></div>
-    <div class="info-grupo" [routerLink]="['/listarTimeGrupoCartola']">
+    <div class="info-grupo" (click)="listarTimeGrupoCartola(grupo)">
       <p class="nome">{{grupo.nome_grupo}}</p>
-      <p class="qtd-times">0 times</p>
+      <p class="qtd-times">{{grupo.count}}</p>
     </div>
  
     

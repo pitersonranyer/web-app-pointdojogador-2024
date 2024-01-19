@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from "../../app.models";
 import { ApiCartolaService } from 'src/app/service/api.cartola';
 import { UtilService } from 'src/app/service/util.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -24,6 +25,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private apiCartolaService: ApiCartolaService,
     private ordernar: UtilService,    
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -52,6 +54,13 @@ export class HomeComponent implements OnInit {
         this.grupos = resGrupos;
 
       })
+
+  }
+
+
+  listarTimeGrupoCartola(grupo: any) {
+
+    this.router.navigate(['/listarTimeGrupoCartola'], { queryParams: grupo });
 
   }
 

@@ -93,8 +93,8 @@ export class MeuGrupoCartolaComponent implements OnInit {
         }
 
         this.apiCartolaService.importarGrupoCartola(parm)
-          .subscribe((times) => {
-            console.log(times);
+          .subscribe(() => {
+            this.listarGruposUsuario();
           })
         
       }
