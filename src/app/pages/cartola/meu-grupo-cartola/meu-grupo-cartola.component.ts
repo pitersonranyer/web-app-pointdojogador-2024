@@ -82,9 +82,7 @@ export class MeuGrupoCartolaComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(importGroup => {
       if (importGroup) {
-        console.log('grupo', importGroup);
-      
-
+   
         let parm = {
           grupo_id: importGroup.grupo_id,
           nome_grupo: importGroup.nome_grupo,
