@@ -3,15 +3,17 @@
     <div class="posicao-campo red">
       <p>{{atleta.abreviacaoPosicao}}</p>
     </div>
-    <div class="ordem">{{i + 1}}º</div>
+    
     <!---->
     <div class="foto-jogador-escudo-time">
-      <img onerror="this.src='assets/png/avatar-jogador.png';this.onerror=null;"
+      <img 
         class="foto-jogador"
         src="{{atleta.foto}}">
         <img
         class="escudo-time"
         src="{{atleta.escudo}}">
+
+        <img *ngIf="atleta.capitao"  src='assets/images/avatars/capitao.png' class="capitao">
       <!---->
       <!---->
     </div>
@@ -21,8 +23,9 @@
         <span class="nome-jogador">{{atleta.apelido}}</span>
         <span class="time">{{atleta.nome_fantasia}}</span>
       </div>
-      <p *ngIf="atleta.pontuacao >= 0" class="pontosjogador"><span class="titulo">Pontuação</span><span class="text-green">+{{atleta.pontuacao}}pts</span></p>
-      <p *ngIf="atleta.pontuacao <  0" class="pontosjogador"><span class="titulo">Pontuação</span><span class="text-red">{{atleta.pontuacao}}pts</span></p>
+      <!---->
+      <p *ngIf="atleta.pontuacao >= 0" class="pontosjogador"><span class="titulo">Pontuação</span><span class="text-green">+{{atleta.pontuacao.toFixed(2)}}pts</span></p>
+      <p *ngIf="atleta.pontuacao <  0" class="pontosjogador"><span class="titulo">Pontuação</span><span class="text-red">{{atleta.pontuacao.toFixed(2)}}pts</span></p>
       <!---->
       <!---->
     </div>

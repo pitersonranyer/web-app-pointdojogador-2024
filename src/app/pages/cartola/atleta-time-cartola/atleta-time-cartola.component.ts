@@ -29,7 +29,6 @@ export class AtletaTimeCartolaComponent implements OnInit {
   listarAtletasTimeCartola(time: any){
     this.apiCartolaService.listarParciaisAtletasMercadoAberto(time.time_id)
       .subscribe((atletas) => {
-        console.log('atletas', atletas);
         this.atletas = atletas;
       })
   } 
