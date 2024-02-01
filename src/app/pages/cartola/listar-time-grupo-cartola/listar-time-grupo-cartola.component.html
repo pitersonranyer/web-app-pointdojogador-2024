@@ -16,12 +16,12 @@
   </mat-card-actions>
 
 
-  <div class="card card-time" *ngFor="let time of times; let i = index">
+  <div class="card card-time" *ngFor="let time of times; let i = index" (click)="listarAtletaTime(time)">
     <div class="ordem-pontuacao">
       <p class="ordem">{{i + 1}}º</p>
       <!---->
     </div><img class="escudo-time-cartola" src="{{time.url_escudo_png}}">
-    <div class="nome-time-criador">
+    <div class="nome-time-criador" >
       <p class="time">{{time.nome}}</p>
       <p class="criador">{{time.nome_cartola}}</p>
     </div>

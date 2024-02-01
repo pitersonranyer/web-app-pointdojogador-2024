@@ -42,4 +42,13 @@ export class ListarTimeGrupoCartolaComponent implements OnInit {
         this.times = timeGrupo;
       })
   } 
+
+
+  listarAtletaTime(time: any) {
+
+    this.router.navigate(['/atletaTimeCartola'], { queryParams: time });
+
+  }
+
+
 }

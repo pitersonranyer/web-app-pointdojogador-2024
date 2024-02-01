@@ -55,4 +55,9 @@ export class ApiCartolaService {
     return this.http.post<any>(url, parm);
   }
 
+  listarParciaisAtletasMercadoAberto(time_id: number) {
+    const url = this.utilService.getUrlBackend() + `/cartolaAPI/listarParciaisAtletasMercadoAberto/${time_id}`;
+    return this.http.get<any[]>(url);
+  }
+
 }
