@@ -1,19 +1,55 @@
 <div class="panel">
+
+  
+  <div class="raised-box" *ngIf="timeCompleto as time">
+
+    <div class="info-time"><img class="logo-time"
+      src="{{time.url_escudo_png}}">
+      <div class="nomes">
+        <p class="nome-time">{{time.nome}}</p>
+        <p class="nome-cartoleiro">{{time.nome_cartola}}</p>
+      </div>
+    </div>
+
+    <div class="dados-time">
+      <div class="row">
+        <div class="box-data">
+          <p class="title">Patrimônio</p>
+          <p class="value">C$&nbsp;{{time.patrimonio}}</p>
+        </div>
+        <div class="box-data">
+          <p class="title">Jogaram</p>
+          <p class="value">12/12</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="box-data">
+          <p class="title">Parcial</p>
+          <p class="value"><span>{{time.pontos.toFixed(2)}}</span></p>
+        </div>
+        <div class="box-data">
+          <p class="title">Posição</p>
+          <p class="value">{{posicao}}</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <h3 class="col-title" *ngIf="atletasReserva.length">TITULARES</h3>
+  <br>
   <div class="card-jogador" *ngFor="let atleta of atletas; let i = index">
     <div class="posicao-campo red">
       <p>{{atleta.abreviacaoPosicao}}</p>
     </div>
-    
+
     <!---->
     <div class="foto-jogador-escudo-time">
-      <img 
-        class="foto-jogador"
-        src="{{atleta.foto}}">
-        <img
-        class="escudo-time"
-        src="{{atleta.escudo}}">
+      <img class="foto-jogador" src="{{atleta.foto}}">
+      <img class="escudo-time" src="{{atleta.escudo}}">
 
-        <img *ngIf="atleta.capitao"  src='assets/images/avatars/capitao.png' class="capitao">
+      <img *ngIf="atleta.capitao" src='assets/images/avatars/capitao.png' class="capitao">
       <!---->
       <!---->
     </div>
@@ -24,11 +60,53 @@
         <span class="time">{{atleta.nome_fantasia}}</span>
       </div>
       <!---->
-      <p *ngIf="atleta.pontuacao >= 0" class="pontosjogador"><span class="titulo">Pontuação</span><span class="text-green">+{{atleta.pontuacao.toFixed(2)}}pts</span></p>
-      <p *ngIf="atleta.pontuacao <  0" class="pontosjogador"><span class="titulo">Pontuação</span><span class="text-red">{{atleta.pontuacao.toFixed(2)}}pts</span></p>
+      <p *ngIf="atleta.pontuacao >= 0" class="pontosjogador">
+        <span class="titulo">Pontuação</span>
+        <span class="text-green"> <span *ngIf="atleta.capitao" class="capitaoSpan"> {{atleta.pontuacao.toFixed(2)}}
+            (1.5) &nbsp;</span> {{atleta.capitao ? atleta.pontuacaoCapitao.toFixed(2) : atleta.pontuacao.toFixed(2) }} 
+        </span>
+      </p>
+      <p *ngIf="atleta.pontuacao <  0" class="pontosjogador">
+        <span class="titulo">Pontuação</span>
+        <span class="text-red"><span *ngIf="atleta.capitao" class="capitaoSpan"> {{atleta.pontuacao.toFixed(2)}} (1.5)
+            &nbsp;</span> {{atleta.capitao ? atleta.pontuacaoCapitao.toFixed(2) : atleta.pontuacao.toFixed(2) }} 
+        </span>
+      </p>
       <!---->
       <!---->
     </div>
   </div>
+  <br>
+  <h3 class="col-title" *ngIf="atletasReserva.length">RESERVAS</h3>
+  <br>
+
+  <div class="card-jogador" *ngFor="let atletaReserva of atletasReserva; let i = index">
+    <div class="posicao-campo red">
+      <p>{{atletaReserva.abreviacaoPosicao}}</p>
+    </div>
+
+    <!---->
+    <div class="foto-jogador-escudo-time">
+      <img class="foto-jogador" src="{{atletaReserva.foto}}">
+      <img class="escudo-time" src="{{atletaReserva.escudo}}">
+      <!---->
+      <!---->
+    </div>
+    <!---->
+    <div class="flex-row">
+      <div class="nome-time-jogador">
+        <span class="nome-jogador">{{atletaReserva.apelido}}</span>
+        <span class="time">{{atletaReserva.nome_fantasia}}</span>
+      </div>
+      <!---->
+      <p *ngIf="atletaReserva.pontuacao >= 0" class="pontosjogador"><span class="titulo">Pontuação</span><span
+          class="text-green">{{atletaReserva.pontuacao.toFixed(2)}}</span></p>
+      <p *ngIf="atletaReserva.pontuacao <  0" class="pontosjogador"><span class="titulo">Pontuação</span><span
+          class="text-red">{{atletaReserva.pontuacao.toFixed(2)}}</span></p>
+      <!---->
+      <!---->
+    </div>
+  </div>
+
 
 </div>

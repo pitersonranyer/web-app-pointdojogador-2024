@@ -44,7 +44,8 @@ export class ListarTimeGrupoCartolaComponent implements OnInit {
   } 
 
 
-  listarAtletaTime(time: any) {
+  listarAtletaTime(time: any, index: number) {
+    time.posicao = index + 1;
 
     this.router.navigate(['/atletaTimeCartola'], { queryParams: time });
 

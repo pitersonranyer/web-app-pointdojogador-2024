@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgModule } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiCartolaService } from 'src/app/service/api.cartola';
 
@@ -11,14 +11,19 @@ import { ApiCartolaService } from 'src/app/service/api.cartola';
 export class AtletaTimeCartolaComponent implements OnInit {
  
   time: any;
+  timeCompleto: any;
   atletas = [];
-  constructor(  private route: ActivatedRoute,
+  atletasReserva = [];
+  posicao = 0
+
+   constructor(  private route: ActivatedRoute,
     private apiCartolaService: ApiCartolaService) { }
 
   ngOnInit() {
 
     this.route.queryParams.subscribe(params => {
       this.time = params;
+      this.posicao = this.time.posicao;
     });
    
     this.listarAtletasTimeCartola(this.time);
@@ -29,7 +34,9 @@ export class AtletaTimeCartolaComponent implements OnInit {
   listarAtletasTimeCartola(time: any){
     this.apiCartolaService.listarParciaisAtletasMercadoAberto(time.time_id)
       .subscribe((atletas) => {
-        this.atletas = atletas;
+        this.timeCompleto = atletas;
+        this.atletas = this.timeCompleto.titulares;
+        this.atletasReserva = this.timeCompleto.reservas;
       })
   } 
   
