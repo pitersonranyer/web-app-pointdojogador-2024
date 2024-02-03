@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiCartolaService } from 'src/app/service/api.cartola';
 
 
 @Component({
@@ -8,14 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MeuTimeCartolaComponent implements OnInit {
  
-  partidas = [];
+  times = [];
+  usuario_id = 1;
 
-  constructor() { }
+  constructor(private apiCartolaService: ApiCartolaService) { }
 
   ngOnInit() {
    
+    this.listarTimeGrupoUsuario();
    
   }
+
+  listarTimeGrupoUsuario(){
+    this.apiCartolaService.listarTimeFavoritoUsuario(this.usuario_id)
+      .subscribe((times) => {
+        this.times = times;
+      })
+  } 
 
   
 

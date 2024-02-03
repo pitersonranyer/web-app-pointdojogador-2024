@@ -60,4 +60,20 @@ export class ApiCartolaService {
     return this.http.get<any[]>(url);
   }
 
+  buscarTimesFavoritoPorNome(nomeTime: string): Observable<any[]> {
+    const url = this.utilService.getUrlBackend() + `/timeFavorito/listarTimesFavoritoPorNome/${nomeTime}`;
+    return this.http.get<any[]>(url);
+  }
+
+  addTimeFavoritoCartola(parm: any) {
+    const url = this.utilService.getUrlBackend() + `/timeFavorito/cadastrarTimeFavoritoCartola`;
+    return this.http.post<any>(url, parm);
+  }
+
+  listarTimeFavoritoUsuario(usuario_id: number): Observable<any[]> {
+    const url = this.utilService.getUrlBackend() + `/timeFavorito/listarTimeFavoritoUsuario/${usuario_id}`;
+    return this.http.get<any[]>(url);
+  }
+
+
 }

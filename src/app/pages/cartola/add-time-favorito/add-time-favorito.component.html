@@ -1,9 +1,9 @@
 <div class="panel">
 
   <mat-card-actions>
-    <button mat-button (click)="listarTimeGrupoCartola()">
+    <button mat-button routerLink="/meuTimeCartola">
       <mat-icon>keyboard_return</mat-icon>
-      {{nome_grupo}}
+      Meus Times
     </button>
     
   </mat-card-actions>
@@ -34,8 +34,8 @@
     </div>
 
     <div *ngIf="!time.achou" class="iconAdd">
-      <mat-icon  style="-webkit-text-fill-color:blue"  *ngIf="!time.inPoint" (click)="addTimeGrupo(time)">add</mat-icon>
-      <mat-icon  style="-webkit-text-fill-color:green"  *ngIf="time.inPoint"  >check</mat-icon>
+      <mat-icon  style="-webkit-text-fill-color:blue"  *ngIf="!time.inPoint" (click)="addTimeFavorito(time)">add</mat-icon>
+      <mat-icon  style="-webkit-text-fill-color:green"  *ngIf="time.inPoint" >check</mat-icon>
     </div>
 
     

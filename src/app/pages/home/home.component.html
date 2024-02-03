@@ -35,22 +35,20 @@
   <p class="panel-title">Meus Times</p>
   <div class="ng-star-inserted">
     <div class="ng-star-inserted">
-      <div class="card card-time">
+     
+      <div class="card card-time" *ngFor="let time of times | slice:0:3 ; let i = index " >
         <div class="ordem-pontuacao">
-          <p class="ordem">1000°</p>
+          <p class="ordem">{{i + 1}}º</p>
           <!---->
-        </div><img class="escudo-time-cartola"
-          src="https://s3.glbimg.com/v1/AUTH_58d78b787ec34892b5aaa0c7a146155f/cartola_svg_185/escudo/f3/40/53/00c5aaf98b-57e7-475c-80e9-0770de77b6f320210429204053">
-        <div class="nome-time-criador">
-          <p class="time">app pointdojogador2</p>
-          <p class="criador">iOS e Android</p>
+        </div><img class="escudo-time-cartola" src="{{time.url_escudo_png}}">
+        <div class="nome-time-criador" >
+          <p class="timeCriador">{{time.nome}}</p>
+          <p class="criador">{{time.nome_cartola}}</p>
         </div>
-        <div class="pontos">
-          <p class="total text-green">134,03</p>
-          <p class="pontuados">12/12</p>
-        </div>
-        <!---->
+        
       </div>
+
+
     </div>
     <!---->
     <!---->
