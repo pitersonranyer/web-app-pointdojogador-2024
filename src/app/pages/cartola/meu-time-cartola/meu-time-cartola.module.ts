@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../../shared/shared.module';
 import { MeuTimeCartolaComponent } from './meu-time-cartola.component';
+import { ImportaTimeFavoritoDialogComponent } from './importa-time-favorito-dialog/importa-time-favorito-dialog.component';
 
 
 
@@ -19,7 +20,8 @@ export const routes: Routes = [
     SharedModule
   ],
   declarations: [
-    MeuTimeCartolaComponent
+    MeuTimeCartolaComponent,
+    ImportaTimeFavoritoDialogComponent
   ]
 })
 export class MeuTimeCartolaModule { }

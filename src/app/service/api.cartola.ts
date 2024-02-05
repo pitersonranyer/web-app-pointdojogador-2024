@@ -75,5 +75,15 @@ export class ApiCartolaService {
     return this.http.get<any[]>(url);
   }
 
+  importarTimeFavoritoCartola(parm: any) {
+    const url = this.utilService.getUrlBackend() + `/timeFavorito/importarTimeFavoritoCartola`;
+    return this.http.post<any[]>(url, parm);
+  }
+
+  excluirTimeFavorito(grupo: any) {
+    const url = this.utilService.getUrlBackend() + `/timeFavorito/excluirTimeFavorito`;
+    return this.http.put<any>(url, grupo);
+  }
+
 
 }

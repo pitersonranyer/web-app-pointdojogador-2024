@@ -8,7 +8,7 @@
       Buscar
     </button>
 
-    <button mat-button >
+    <button mat-button (click)="openImportaDialog()">
       <mat-icon>get_app</mat-icon>
       Importar
     </button>
@@ -25,6 +25,10 @@
       <p class="criador">{{time.nome_cartola}}</p>
     </div>
     
+    <div class="iconAdd">
+      <mat-icon color="warn"  (click)="excluirTimeFavorito(time)" >delete</mat-icon>
+    </div>
+
   </div>
 
 
