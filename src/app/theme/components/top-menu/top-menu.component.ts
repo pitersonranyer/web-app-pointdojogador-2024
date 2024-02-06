@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { AppService } from '../../../app.service';
 import { Settings, AppSettings } from '../../../app.settings';
+import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
   selector: 'app-top-menu',
@@ -12,7 +13,7 @@ export class TopMenuComponent implements OnInit {
   public currency:any; 
 
   public settings: Settings;
-  constructor(public appSettings:AppSettings, public appService:AppService, public translateService: TranslateService) { 
+  constructor(public authService: AuthService, public appSettings:AppSettings, public appService:AppService, public translateService: TranslateService) { 
     this.settings = this.appSettings.settings; 
   } 
 

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { User_Point } from 'src/app/models/user_point';
 import { ApiCartolaService } from 'src/app/service/api.cartola';
+import { AuthService } from 'src/app/service/auth.service';
 
 
 @Component({
@@ -12,10 +14,16 @@ export class AddTimeFavoritoComponent implements OnInit {
  
   nomeTime = '';
   times = [];
+  public usuario: User_Point = <User_Point>{};
+  usuario_id = 0;
   
   constructor(private apiCartolaService: ApiCartolaService,
-    private route: ActivatedRoute,
-    private router: Router) { }
+    public authService: AuthService ) 
+    
+    { 
+      this.usuario = this.authService.currentUserPointValue;
+      this.usuario_id = this.usuario.id 
+    }
 
   ngOnInit() {
 
@@ -37,7 +45,7 @@ export class AddTimeFavoritoComponent implements OnInit {
  
   addTimeFavorito(time: any){
 
-    time.usuario_id = 1;
+    time.usuario_id = this.usuario_id;
 
      this.apiCartolaService.addTimeFavoritoCartola(time)
       .subscribe(() => {

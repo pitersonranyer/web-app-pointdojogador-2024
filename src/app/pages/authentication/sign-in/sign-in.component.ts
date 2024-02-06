@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { emailValidator, matchingPasswords } from '../../theme/utils/app-validators';
+import { emailValidator, matchingPasswords } from '../../../theme/utils/app-validators';
+import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -13,7 +14,8 @@ export class SignInComponent implements OnInit {
   loginForm: UntypedFormGroup;
   registerForm: UntypedFormGroup;
 
-  constructor(public formBuilder: UntypedFormBuilder, public router:Router, public snackBar: MatSnackBar) { }
+  constructor(public formBuilder: UntypedFormBuilder, public router:Router, public snackBar: MatSnackBar,
+    public authService: AuthService) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({

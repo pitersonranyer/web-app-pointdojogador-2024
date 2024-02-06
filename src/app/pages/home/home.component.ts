@@ -3,6 +3,7 @@ import { Product } from "../../app.models";
 import { ApiCartolaService } from 'src/app/service/api.cartola';
 import { UtilService } from 'src/app/service/util.service';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -19,7 +20,8 @@ export class HomeComponent implements OnInit {
 
   constructor(private apiCartolaService: ApiCartolaService,
     private ordernar: UtilService,    
-    private router: Router
+    private router: Router,
+    public authService: AuthService
   ) { }
 
   ngOnInit() {
