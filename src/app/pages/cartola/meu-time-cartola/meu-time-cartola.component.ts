@@ -25,8 +25,10 @@ export class MeuTimeCartolaComponent implements OnInit {
     public authService: AuthService,
   ) {
     this.settings = this.appSettings.settings;
-    this.usuario = this.authService.currentUserPointValue;
-    this.usuario_id = this.usuario.id
+    if (this.authService.currentUserPointValue) {
+      this.usuario = this.authService.currentUserPointValue;
+      this.usuario_id = this.usuario.id
+    }
   }
 
 

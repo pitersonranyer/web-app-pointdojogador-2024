@@ -217,9 +217,7 @@ export class AuthService {
 
   // Sign in with Google
   GoogleAuth() {
-    this.AuthLogin(new auth.GoogleAuthProvider()).then((res: any) => {
-      this.router.navigate(['']);
-    });
+    this.AuthLogin(new auth.GoogleAuthProvider())
   }
 
   // Auth logic to run auth providers
@@ -238,6 +236,7 @@ export class AuthService {
             localStorage.setItem('currentUser', JSON.stringify(result.user));
             localStorage.setItem('userPoint', JSON.stringify(userPoint));
             this.currentUserPoinSubject.next(userPoint);
+            this.router.navigate(['']);
           })
       })
 

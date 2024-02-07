@@ -1,39 +1,40 @@
 <div class="panel">
-
-
-  <mat-card-actions align="end">
+  <div *ngIf="authService.currentUserPointValue as user">
+    <mat-card-actions align="end">
   
-    <button mat-button color="primary" (click)="openCriaDialog()">
-      <mat-icon>add</mat-icon>
-      Criar
-    </button>
-
-    <button mat-button (click)="openImportaDialog()">
-      <mat-icon>get_app</mat-icon>
-      Importar
-    </button>
-
-  </mat-card-actions>
-
-
-  <div class="card-grupo"  *ngFor="let grupo of grupos">
-    <div class="logo-grupo"><img src='assets/images/avatars/grupo.png'></div>
-    <div class="info-grupo" (click)="listarTimeGrupoCartola(grupo)" >
-      <p class="nome">{{grupo.nome_grupo}}</p>
-      <p class="qtd-times">{{grupo.count}}</p>
+      <button mat-button color="primary" (click)="openCriaDialog()">
+        <mat-icon>add</mat-icon>
+        Criar
+      </button>
+  
+      <button mat-button (click)="openImportaDialog()">
+        <mat-icon>get_app</mat-icon>
+        Importar
+      </button>
+     </mat-card-actions>
+  
+  
+    <div class="card-grupo"  *ngFor="let grupo of grupos">
+      <div class="logo-grupo"><img src='assets/images/avatars/grupo.png'></div>
+      <div class="info-grupo" (click)="listarTimeGrupoCartola(grupo)" >
+        <p class="nome">{{grupo.nome_grupo}}</p>
+        <p class="qtd-times">{{grupo.count}}</p>
+      </div>
+  
+      <div class="iconAdd">
+        <mat-icon color="warn"  (click)="excluirGrupo(grupo)" >delete</mat-icon>
+      </div>
     </div>
-
-    <div class="iconAdd">
-      <mat-icon color="warn"  (click)="excluirGrupo(grupo)" >delete</mat-icon>
+  
+    <div *ngIf="!grupos.length" class="sem-dados">
+      <img src='assets/images/avatars/bola-de-futebol.png'> 
+       <p  >Você ainda não possui grupos.</p>
     </div>
   </div>
 
-  <div *ngIf="!grupos.length" class="sem-dados">
-    <img src='assets/images/avatars/bola-de-futebol.png'> 
-     <p  >Você ainda não possui grupos.</p>
+  <div *ngIf="!authService.currentUserPointValue as user" class="sem-dados">
+    <img src='assets/images/avatars/grupo.png' class="imgSemDados">
+    <p> <a routerLink="/sign-in" class="orange-link"> Efetue o LOGIN para cadastrar ou conferir seus grupos </a> </p>
   </div>
-
-
-
-
+  
 </div>

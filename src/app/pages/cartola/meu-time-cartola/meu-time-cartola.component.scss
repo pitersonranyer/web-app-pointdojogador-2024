@@ -76,3 +76,33 @@
 }
 
 
+.imgSemDados {
+  width: 100px;
+  height: 100px;
+}
+
+.sem-dados {
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.4rem;
+  padding: 5% 0;
+  text-align: center;
+  color: HSL(0, 0%, 47.8%);
+}
+
+.orange-link {
+  display: block;
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  bottom: 10px;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  color: black;
+  text-decoration: underline;
+  font-weight: 700;
+  cursor: pointer;
+}

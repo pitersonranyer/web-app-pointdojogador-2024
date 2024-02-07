@@ -27,8 +27,10 @@ export class MeuGrupoCartolaComponent implements OnInit {
     private apiCartolaService: ApiCartolaService,
     private router: Router) {
     this.settings = this.appSettings.settings;
-    this.usuario = this.authService.currentUserPointValue;
-    this.usuario_id = this.usuario.id
+    if (this.authService.currentUserPointValue) {
+      this.usuario = this.authService.currentUserPointValue;
+      this.usuario_id = this.usuario.id
+    }
   }
 
   ngOnInit() {

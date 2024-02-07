@@ -4,6 +4,7 @@ import { ApiCartolaService } from 'src/app/service/api.cartola';
 import { UtilService } from 'src/app/service/util.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
+import { User_Point } from 'src/app/models/user_point';
 
 @Component({
   selector: 'app-home',
@@ -12,40 +13,46 @@ import { AuthService } from 'src/app/service/auth.service';
 })
 export class HomeComponent implements OnInit {
 
- 
+
   times = [];
-  usuario_id = 1;
+  usuario_id = 0;
   partidas = [];
   grupos = [];
+  public usuario: User_Point = <User_Point>{};
 
   constructor(private apiCartolaService: ApiCartolaService,
-    private ordernar: UtilService,    
+    private ordernar: UtilService,
     private router: Router,
     public authService: AuthService
-  ) { }
+  ) {
+    if (this.authService.currentUserPointValue) {
+      this.usuario = this.authService.currentUserPointValue;
+      this.usuario_id = this.usuario.id
+    }
+  }
 
   ngOnInit() {
 
     this.listarPartidas();
     this.listarGruposUsuario();
     this.listarTimeGrupoUsuario()
-    
+
   }
 
   listarPartidas() {
 
     this.apiCartolaService.listarPartidasRodada()
       .subscribe((resPartidas) => {
-        
+
         this.partidas = this.ordernar.ordenarObjetoArray(resPartidas, 'partida_data');
-       
+
       })
 
   }
 
   listarGruposUsuario() {
 
-    this.apiCartolaService.listarTodosGruposUsuario(1)
+    this.apiCartolaService.listarTodosGruposUsuario(this.usuario_id)
       .subscribe((resGrupos) => {
 
         this.grupos = resGrupos;
@@ -54,12 +61,12 @@ export class HomeComponent implements OnInit {
 
   }
 
-  listarTimeGrupoUsuario(){
+  listarTimeGrupoUsuario() {
     this.apiCartolaService.listarTimeFavoritoUsuario(this.usuario_id)
       .subscribe((times) => {
         this.times = times;
       })
-  } 
+  }
 
 
   listarTimeGrupoCartola(grupo: any) {

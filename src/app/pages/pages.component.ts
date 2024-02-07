@@ -5,6 +5,7 @@ import { AppService } from '../app.service';
 import { Category } from '../app.models';
 import { SidenavMenuService } from '../theme/components/sidenav-menu/sidenav-menu.service';
 import { isPlatformBrowser } from '@angular/common';
+import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-pages',
@@ -22,6 +23,7 @@ export class PagesComponent implements OnInit {
   public settings: Settings;
   constructor(public appSettings:AppSettings, 
               public appService:AppService, 
+              public authService: AuthService,
               public sidenavMenuService:SidenavMenuService,
               public router:Router,
               @Inject(PLATFORM_ID) private platformId: Object) { 
