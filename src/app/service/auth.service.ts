@@ -103,7 +103,7 @@ export class AuthService {
               this.currentUserPoinSubject.next(userPoint);
             })
           this.currentUserSubject.next(result.user);
-          
+
         } else {
           return JSON.stringify(result.user.emailVerified);
           // window.alert('E-mail não verificado');
@@ -220,6 +220,8 @@ export class AuthService {
     this.AuthLogin(new auth.GoogleAuthProvider())
   }
 
+
+
   // Auth logic to run auth providers
   AuthLogin(provider: any) {
     return this.afAuth
@@ -245,6 +247,7 @@ export class AuthService {
       });
   }
 
+  
 
   /* Setting up user data when sign in with username/password, 
   sign up with username/password and sign in with social auth  
@@ -267,7 +270,5 @@ export class AuthService {
     });
   }
 
-
-
-
 }
+

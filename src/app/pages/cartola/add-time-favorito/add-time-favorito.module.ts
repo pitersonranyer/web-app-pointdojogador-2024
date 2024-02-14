@@ -4,6 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../../shared/shared.module';
 import { AddTimeFavoritoComponent } from './add-time-favorito.component';
+import { bearerTokenInterceptor } from 'src/app/interceptadores/bearer-token.interceptor';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 
 
 
@@ -23,6 +25,11 @@ export const routes: Routes = [
   ],
   declarations: [
     AddTimeFavoritoComponent
-  ]
+  ],
+  providers: [
+   
+    provideHttpClient(withInterceptors([bearerTokenInterceptor])),
+    
+  ],
 })
 export class AddTimeFavoritoModule { }
