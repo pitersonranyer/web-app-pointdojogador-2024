@@ -109,9 +109,10 @@ export class AppService {
     }
 
     public getBrands(){
-        return [  
+        return [ 
+            { name: 'point', image: 'assets/images/brands/point.png' }, 
             { name: 'aloha', image: 'assets/images/brands/aloha.png' },
-            { name: 'dream', image: 'assets/images/brands/dream.png' },  
+            /* { name: 'dream', image: 'assets/images/brands/dream.png' },  
             { name: 'congrats', image: 'assets/images/brands/congrats.png' },
             { name: 'best', image: 'assets/images/brands/best.png' },
             { name: 'original', image: 'assets/images/brands/original.png' },
@@ -122,7 +123,7 @@ export class AppService {
             { name: 'easter', image: 'assets/images/brands/easter.png' },
             { name: 'with', image: 'assets/images/brands/with.png' },
             { name: 'special', image: 'assets/images/brands/special.png' },
-            { name: 'bravo', image: 'assets/images/brands/bravo.png' }
+            { name: 'bravo', image: 'assets/images/brands/bravo.png' } */
         ];
     }
 

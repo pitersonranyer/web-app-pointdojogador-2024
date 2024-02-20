@@ -38,7 +38,7 @@ export class BrandsCarouselComponent {
         480: {
           slidesPerView: 2
         },
-        600: {
+        /* 600: {
           slidesPerView: 3
         },
         960: {
@@ -49,7 +49,7 @@ export class BrandsCarouselComponent {
         },
         1500: {
           slidesPerView: 6
-        }
+        } */
       }
     }
   }

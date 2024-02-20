@@ -5,6 +5,7 @@ import { UtilService } from 'src/app/service/util.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
 import { User_Point } from 'src/app/models/user_point';
+import { AppService } from 'src/app/app.service';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +14,7 @@ import { User_Point } from 'src/app/models/user_point';
 })
 export class HomeComponent implements OnInit {
 
+  public brands = [];
 
   times = [];
   usuario_id = 0;
@@ -23,7 +25,8 @@ export class HomeComponent implements OnInit {
   constructor(private apiCartolaService: ApiCartolaService,
     private ordernar: UtilService,
     private router: Router,
-    public authService: AuthService
+    public authService: AuthService,
+    public appService: AppService
   ) {
     if (this.authService.currentUserPointValue) {
       this.usuario = this.authService.currentUserPointValue;
@@ -35,8 +38,15 @@ export class HomeComponent implements OnInit {
 
     this.listarPartidas();
     this.listarGruposUsuario();
-    this.listarTimeGrupoUsuario()
+    this.listarTimeGrupoUsuario();
+    this.getBrands();
 
+  }
+
+  
+
+  public getBrands(){
+    this.brands = this.appService.getBrands();
   }
 
   listarPartidas() {
