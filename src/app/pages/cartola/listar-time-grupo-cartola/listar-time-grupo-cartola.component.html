@@ -1,27 +1,27 @@
 <div class="panel">
 
   <mat-card-actions align="end">
-    <button mat-button  routerLink="/meuGrupoCartola">
+    <button mat-button routerLink="/meuGrupoCartola">
       <mat-icon>keyboard_return</mat-icon>
       {{nome_grupo}}
     </button>
 
     <div fxFlex></div>
 
-    <button mat-button color="primary" (click)="addTimeGrupo()" >
+    <button mat-button color="primary" (click)="addTimeGrupo()">
       <mat-icon>add</mat-icon>
       Add
     </button>
-  
+
   </mat-card-actions>
 
 
-  <div class="card-liga" *ngFor="let time of times; let i = index" (click)="listarAtletaTime(time, i)">
+  <div class="card-time" *ngFor="let time of times; let i = index" (click)="listarAtletaTime(time, i)">
     <div class="ordem-pontuacao">
       <p class="ordem">{{i + 1}}º</p>
       <!---->
     </div><img class="escudo-time-cartola" src="{{time.url_escudo_png}}">
-    <div class="nome-time-criador" >
+    <div class="nome-time-criador">
       <p class="time">{{time.nome}}</p>
       <p class="criador">{{time.nome_cartola}}</p>
     </div>
@@ -30,5 +30,5 @@
       <p class="pontuados">12/{{time.qtde_jogadores_entrou_em_campo}}</p>
     </div>
   </div>
-  
+
 </div>

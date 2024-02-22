@@ -86,4 +86,9 @@ export class ApiCartolaService {
   }
 
 
+  listarLigasCartola(): Observable<any[]> {
+    const url = this.utilService.getUrlBackend() + `/ligaCartola/listarTodasLigas`;
+    return this.http.get<any[]>(url);
+  }
+
 }

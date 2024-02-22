@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { SwiperConfigInterface } from '../../theme/components/swiper/swiper.module';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-brands-carousel',
@@ -8,11 +9,17 @@ import { SwiperConfigInterface } from '../../theme/components/swiper/swiper.modu
 })
 export class BrandsCarouselComponent {
 
-  @Input('brands') brands: Array<any> = [];
+  @Input('ligas') ligas: Array<any> = [];
 
   public config: SwiperConfigInterface = { };
   
-  constructor() { }
+  constructor(private router: Router) { }
+
+  listarCompeticaoLiga(competicao: any) {
+
+    this.router.navigate(['/competicaoLigaCartola'], { queryParams: competicao });
+
+  }
 
   ngAfterViewInit(){
     this.config = {

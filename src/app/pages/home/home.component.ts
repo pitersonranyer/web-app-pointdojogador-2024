@@ -5,7 +5,8 @@ import { UtilService } from 'src/app/service/util.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
 import { User_Point } from 'src/app/models/user_point';
-import { AppService } from 'src/app/app.service';
+import { SwiperConfigInterface } from 'src/app/theme/components/swiper/swiper.module';
+
 
 @Component({
   selector: 'app-home',
@@ -14,19 +15,19 @@ import { AppService } from 'src/app/app.service';
 })
 export class HomeComponent implements OnInit {
 
-  public brands = [];
-
   times = [];
   usuario_id = 0;
   partidas = [];
   grupos = [];
+  ligas = [];
   public usuario: User_Point = <User_Point>{};
+  public config: SwiperConfigInterface = { };
 
   constructor(private apiCartolaService: ApiCartolaService,
     private ordernar: UtilService,
     private router: Router,
     public authService: AuthService,
-    public appService: AppService
+
   ) {
     if (this.authService.currentUserPointValue) {
       this.usuario = this.authService.currentUserPointValue;
@@ -39,14 +40,18 @@ export class HomeComponent implements OnInit {
     this.listarPartidas();
     this.listarGruposUsuario();
     this.listarTimeGrupoUsuario();
-    this.getBrands();
+    this.listarLigasCartola()
+
 
   }
 
-  
+  public listarLigasCartola(){
+    this.apiCartolaService.listarLigasCartola()
+    .subscribe((resLigas) => {
+      this.ligas = resLigas;
+      console.log(this.ligas);
+     })
 
-  public getBrands(){
-    this.brands = this.appService.getBrands();
   }
 
   listarPartidas() {
@@ -84,5 +89,49 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/listarTimeGrupoCartola'], { queryParams: grupo });
 
   }
+
+
+  
+
+  ngAfterViewInit(){
+    this.config = {
+      slidesPerView: 7,
+      spaceBetween: 16,         
+      keyboard: true,
+      navigation: true,
+      pagination: false,
+      grabCursor: true,  
+      loop: true,
+      preloadImages: false,
+      lazy: true,     
+      autoplay: {
+        delay: 6000,
+        disableOnInteraction: false
+      },
+      speed: 500,
+      effect: "slide",
+      breakpoints: {
+        240: {
+          slidesPerView: 1
+        },
+        480: {
+          slidesPerView: 2
+        },
+        /* 600: {
+          slidesPerView: 3
+        },
+        960: {
+          slidesPerView: 4
+        },
+        1280: {
+          slidesPerView: 5
+        },
+        1500: {
+          slidesPerView: 6
+        } */
+      }
+    }
+  }
+
 
 }

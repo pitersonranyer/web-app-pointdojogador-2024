@@ -17,7 +17,7 @@ const addBearerToken = async (
   const angularFireAuth = inject(AngularFireAuth);
   const firebaseUser = await angularFireAuth.currentUser;
   const token = await firebaseUser?.getIdToken();
-  console.log('entrouuuuuuuuu no intercepiton', token);
+  //console.log('entrouuuuuuuuu no intercepiton', token);
   if (token) {
     req = req.clone({
       setHeaders: { Authorization: `Bearer ${token}` },

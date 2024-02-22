@@ -110,8 +110,8 @@ export class AppService {
 
     public getBrands(){
         return [ 
-            { name: 'point', image: 'assets/images/brands/point.png' }, 
-            { name: 'aloha', image: 'assets/images/brands/aloha.png' },
+            { name: 'POINT DO JOGADOR', image: 'assets/images/brands/POINT DO JOGADOR.png' }, 
+            { name: 'CANARINHO', image: 'assets/images/brands/CANARINHO.png' },
             /* { name: 'dream', image: 'assets/images/brands/dream.png' },  
             { name: 'congrats', image: 'assets/images/brands/congrats.png' },
             { name: 'best', image: 'assets/images/brands/best.png' },

@@ -2,10 +2,10 @@
     <div class="swiper-container h-100" [swiper]="config">
         <a mat-button routerLink="/brands">Ligas</a>
         <div class="swiper-wrapper h-100">      
-            <div *ngFor="let brand of brands" class="swiper-slide">
+            <div *ngFor="let liga of ligas" class="swiper-slide">
                 <div class="p-0">
-                    <a [routerLink]="['/brands', brand.name]" class="brand-item">
-                        <img [attr.data-src]="brand.image" class="swiper-lazy">
+                    <a (click)="listarCompeticaoLiga(liga)" class="brand-item">
+                        <img [attr.data-src]="liga.path_image" class="swiper-lazy">
                     </a>
                     <div class="swiper-lazy-preloader"></div>
                 </div>
