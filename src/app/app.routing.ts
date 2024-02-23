@@ -20,7 +20,7 @@ export const routes: Routes = [
             { path: 'atletaTimeCartola', loadChildren: () => import('./pages/cartola/atleta-time-cartola/atleta-time-cartola.module').then(m => m.AtletaTimeCartolaModule), data: { breadcrumb: 'Time Favorito' } },
             { path: 'addTimeFavorito', loadChildren: () => import('./pages/cartola/add-time-favorito/add-time-favorito.module').then(m => m.AddTimeFavoritoModule), data: { breadcrumb: 'Adicionar Time' } },
             { path: 'competicaoLigaCartola', loadChildren: () => import('./pages/cartola/competicao-liga-cartola/competicao-liga-cartola.module').then(m => m.CompeticaoLigaCartolaModule), data: { breadcrumb: 'Competição Liga' } },
-            
+            { path: 'gerarCompeticaoLigaCartola', loadChildren: () => import('./pages/cartola/gerar-competicao-liga-cartola/gerar-competicao-liga-cartola.module').then(m => m.GerarCompeticaoLigaCartolaModule), data: { breadcrumb: 'Gerar Competição Liga' } },
             
             { path: 'sign-in', loadChildren: () => import('./pages/authentication/sign-in/sign-in.module').then(m => m.SignInModule), data: { breadcrumb: 'Sign In ' } },
         ]

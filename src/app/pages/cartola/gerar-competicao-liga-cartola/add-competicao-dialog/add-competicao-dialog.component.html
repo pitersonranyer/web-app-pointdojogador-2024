@@ -1,0 +1,91 @@
+<h1 mat-dialog-title>Competicao</h1>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" autocomplete="off" class="user-form">
+    <div mat-dialog-content> 
+        
+                <div fxLayout="row wrap" class="mt-3">
+                    <div fxFlex="100" fxFlex.gt-md="25" class="px-2">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Title</mat-label>
+                            <input matInput formControlName="title" required>
+                            <mat-error *ngIf="form.controls.title.errors?.required">Title is required</mat-error>   
+                        </mat-form-field>
+                    </div> 
+                    <div fxFlex="100" fxFlex.gt-md="25" class="px-2">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Code</mat-label>
+                            <input matInput formControlName="code" required>
+                            <mat-error *ngIf="form.controls.code.errors?.required">Code is required</mat-error>
+                        </mat-form-field>
+                    </div> 
+                    <div fxFlex="100" fxFlex.gt-md="25" class="px-2">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Discount Type</mat-label>
+                            <mat-select formControlName="discountType">
+                                <mat-option [value]="">-</mat-option>
+                                <mat-option *ngFor="let type of data.discountTypes" [value]="type.id">
+                                    <span>{{type.name}}</span>
+                                </mat-option>
+                            </mat-select> 
+                        </mat-form-field>
+                    </div>
+                    <div fxFlex="100" fxFlex.gt-md="25" class="px-2">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Amount</mat-label>
+                            <input matInput formControlName="amount"> 
+                        </mat-form-field>
+                    </div> 
+                    <div fxFlex="100" fxFlex.gt-md="25" class="px-2"> 
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Coupon expiry date</mat-label>
+                            <input matInput [matDatepicker]="expiryDate" formControlName="expiryDate">
+                            <mat-datepicker-toggle matSuffix [for]="expiryDate"></mat-datepicker-toggle>
+                            <mat-datepicker #expiryDate></mat-datepicker>
+                        </mat-form-field>
+                    </div> 
+                    <div fxFlex="100" fxFlex.gt-md="25" class="px-2">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Store</mat-label>
+                            <mat-select formControlName="storeId">
+                                <mat-option [value]="">-</mat-option>
+                                <mat-option *ngFor="let store of data.stores" [value]="store.id">
+                                    <span>{{store.name}}</span>
+                                </mat-option>
+                            </mat-select> 
+                        </mat-form-field>
+                    </div> 
+                    <div fxFlex="100" fxFlex.gt-md="25" class="px-2">
+                        <div class="py-1">
+                            <mat-checkbox formControlName="allowFreeShipping" color="primary"> 
+                                <div fxLayout="row" fxLayoutAlign="start center">
+                                    <span class="mr-1">Allow free shipping</span>
+                                    <mat-icon class="mat-icon-sm" color="primary" matTooltip="Check this box if the coupon grants free shipping. The free shipping method must be enabled and be set to require.">live_help</mat-icon>
+                                </div>
+                            </mat-checkbox> 
+                        </div>
+                    </div> 
+                    <div fxFlex="100" fxFlex.gt-md="25" class="px-2">
+                        <div class="py-1">
+                            <mat-checkbox formControlName="showOnStore" color="primary"> 
+                                <div fxLayout="row" fxLayoutAlign="start center">
+                                    <span class="mr-1">Show on store</span>
+                                    <mat-icon class="mat-icon-sm" color="primary" matTooltip="Check this box if you want to show this coupon in store page.">live_help</mat-icon>
+                                </div>
+                            </mat-checkbox> 
+                        </div>
+                    </div> 
+                    <div fxFlex="100" class="px-2">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Description</mat-label>
+                            <input matInput formControlName="desc">
+                        </mat-form-field>
+                    </div> 
+                </div>  
+           
+    </div>
+    <div mat-dialog-actions>
+        <div fxLayout="row" fxLayoutAlign="space-between center" class="w-100"> 
+            <button mat-raised-button color="warn" type="button" mat-dialog-close>Close</button>
+            <button mat-raised-button color="primary" type="submit">Save</button>
+        </div> 
+    </div>
+</form>
