@@ -91,4 +91,19 @@ export class ApiCartolaService {
     return this.http.get<any[]>(url);
   }
 
+  cadastrarCompeticaoLigaCartola(grupo: any) {
+    const url = this.utilService.getUrlBackend() + `/competicaoLigaCartola/cadastrarCompeticaoLigaCartola`;
+    return this.http.post<any>(url, grupo);
+  }
+
+  listarCompeticaoLiga(liga_id: number): Observable<any[]> {
+    const url = this.utilService.getUrlBackend() + `/competicaoLigaCartola/listarCompeticaoLiga/${liga_id}`;
+    return this.http.get<any[]>(url);
+  }
+
+  listarLigaUsuario(usuario_id: number): Observable<any[]> {
+    const url = this.utilService.getUrlBackend() + `/ligaCartola/listarLigaUsuario/${usuario_id}`;
+    return this.http.get<any[]>(url);
+  }
+
 }

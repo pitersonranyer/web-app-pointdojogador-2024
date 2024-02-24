@@ -1,0 +1,15 @@
+<div class="panel">
+
+  <div class="card-grupo" *ngFor="let liga of ligas">
+    <div class="logo-grupo"><img src='{{liga.path_image}}'></div>
+    <div class="info-grupo">
+      <p class="nome">{{liga.nome_liga}}</p>
+      <p class="qtd-times">adm: {{liga.usuario_id}}</p>
+    </div>
+
+    <div class="iconAdd" (click)="gerarCompeticaoLigaCartola(liga)">
+      <mat-icon  >input</mat-icon>
+    </div>
+  </div>
+
+</div>

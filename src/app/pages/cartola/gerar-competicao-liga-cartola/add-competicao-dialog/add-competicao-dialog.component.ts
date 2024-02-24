@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { MatChipInputEvent } from '@angular/material/chips';
+
 
 @Component({
   selector: 'app-add-competicao-dialog',
@@ -11,70 +11,68 @@ import { MatChipInputEvent } from '@angular/material/chips';
 })
 export class AddCompeticaoDialogComponent implements OnInit {
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-  public products = []; 
+  // public tiposLigas = ["Rodada", "Mensal", "1º Turno", "2º Turno", "Anual"];
+
+  public tiposLigas = [
+    {
+      "desc": "Rodada"
+    },
+    {
+      "desc": "Mensal"
+    },
+    {
+      "desc": "1º Turno"
+    },
+    {
+      "desc": "2º Turno"
+    },
+    {
+      "desc": "Anual"
+    }
+  ]
+
+  public situacaoLigas = [
+    {
+      "desc": "Aberta"
+    },
+    {
+      "desc": "Fechada"
+    },
+    {
+      "desc": "Encerrada"
+    }
+  ]
+
   public form: UntypedFormGroup;
-  constructor(public dialogRef: MatDialogRef<AddCompeticaoDialogComponent>, 
-              @Inject(MAT_DIALOG_DATA) public data: any,
-              public fb: UntypedFormBuilder) { }
+  constructor(public dialogRef: MatDialogRef<AddCompeticaoDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    public fb: UntypedFormBuilder) { }
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
     this.form = this.fb.group({
-      id: 0, 
-      title: ['', Validators.required],
-      code: ['', Validators.required],
-      desc: null, 
-      discountType: null,
-      amount: null,
-      expiryDate: null,
-      allowFreeShipping: false,
-      storeId: null,
-      showOnStore: false,
-      restriction: this.fb.group({ 
-        minimumSpend: null,
-        maximumSpend: null,
-        individualUseOnly: false,
-        excludeSaleItems: false,
-        products: [[]],
-        categories: [[]]
-      }),
-      limit: this.fb.group({ 
-        perCoupon: null,
-        perItems: null,
-        perUser: null
-      }) 
-    }); 
+      tipo_liga:  ['', Validators.required],
+      status_liga: ['', Validators.required],
+      tx_descricao_liga: ['', Validators.required],
+      rodada_ini: ['', Validators.required],
+      rodada_fim: ['', Validators.required],
+      data_fim_inscricao: ['', Validators.required],
+      hora_fim_inscricao: ['', Validators.required],
+      valor_competicao: ['', Validators.required],
+      valor_tx_adm: ['', Validators.required],
+      link_grupo_wapp:['', Validators.required]
+    });
 
-    if(this.data.coupon){
-      this.form.patchValue(this.data.coupon);
-      this.products = this.data.coupon.restriction.products;
-    };
+    /* competicao_liga_id: 0,
+    liga_id: 0, */
   }
 
-  public onSubmit(){
-    console.log(this.form.value);
-    if(this.form.valid){
+  public onSubmit() {
+
+    if (this.form.valid) {
+      console.log('DIALOG');
       this.dialogRef.close(this.form.value);
     }
-  } 
-
-  public addProduct(event: MatChipInputEvent): void {
-    const input = event.input;
-    const value = event.value; 
-    if ((value || '').trim()) {
-      this.products.push( value.trim() );
-    } 
-    if (input) {
-      input.value = '';
-    }  
-    this.form['controls'].restriction['controls'].products.patchValue(this.products);
   }
 
-  public removeProduct(fruit: any): void {
-    const index = this.products.indexOf(fruit); 
-    if (index >= 0) {
-      this.products.splice(index, 1);
-    }
-    this.form['controls'].restriction['controls'].products.patchValue(this.products);
-  }
 
 }
