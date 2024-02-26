@@ -49,7 +49,6 @@ export class HomeComponent implements OnInit {
     this.apiCartolaService.listarLigasCartola()
     .subscribe((resLigas) => {
       this.ligas = resLigas;
-      console.log(this.ligas);
      })
 
   }
