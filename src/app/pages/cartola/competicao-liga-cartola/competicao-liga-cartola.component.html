@@ -1,29 +1,29 @@
-<div class="card-competicao">
-  <div class="logo-competicao"><img src={{path_image}}></div>
+<div class="card-competicao" *ngFor="let competicao of competicoes">
+  <div class="logo-competicao"><img src={{competicao.path_image}}></div>
   <div class="info-competicao">
     <div class="situacao-liga">
-      <mat-chip-option color="primary" highlighted selectable="false">R$4,00</mat-chip-option>
+      <mat-chip-option color="primary" highlighted selectable="false">R${{competicao.valor_competicao}}</mat-chip-option>
       &nbsp;&nbsp;
-      <mat-chip-option color="warn" highlighted selectable="false">#35 FECHADA</mat-chip-option>
+      <mat-chip-option color="warn" highlighted selectable="false">#35 {{competicao.status_liga}}</mat-chip-option>
     </div>
-    <p class="nome">{{nome_liga}}</p>
+    <p class="nome">{{competicao.tipo_liga}}</p>
     <p fxLayout="row" fxLayoutAlign="start center">
       <mat-icon>headset_mic</mat-icon>
-      <span>&nbsp;&nbsp;Adm: Piterson</span>
+      <span>&nbsp;&nbsp;Adm: {{competicao.nome}}</span>
     </p>
 
     <p fxLayout="row" fxLayoutAlign="start center">
       <mat-icon>list</mat-icon>
-      <span>&nbsp;&nbsp;500 <span style="font-size: 10px;">(times inscritos) </span></span>
+      <span>&nbsp;&nbsp;{{competicao.totalParticipantes}} <span style="font-size: 10px;">(times inscritos) </span></span>
     </p>
     <p fxLayout="row" fxLayoutAlign="start center">
       <mat-icon>attach_money</mat-icon>
-      <span>&nbsp;&nbsp;6.000.00 <span style="font-size: 10px;">(premiação) </span></span>
+      <span>&nbsp;&nbsp;{{competicao.premiacaoFinalFormat}} <span style="font-size: 10px;">(premiação) </span></span>
     </p>
 
     <p fxLayout="row" fxLayoutAlign="start center">
       <mat-icon>schedule</mat-icon>
-      <span>&nbsp;&nbsp;Inscrições até: 16/02 às 16:00</span>
+      <span>&nbsp;&nbsp;Inscrições até: {{competicao.data_fim_inscricao}} às  {{competicao.hora_fim_inscricao}}</span>
     </p>
 
   </div>

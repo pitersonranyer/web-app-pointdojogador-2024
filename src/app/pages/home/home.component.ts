@@ -38,11 +38,13 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
 
     this.listarPartidas();
-    this.listarGruposUsuario();
-    this.listarTimeGrupoUsuario();
     this.listarLigasCartola()
 
-
+    if (this.usuario_id != 0) {
+      this.listarGruposUsuario();
+    this.listarTimeGrupoUsuario();
+    }
+    
   }
 
   public listarLigasCartola(){

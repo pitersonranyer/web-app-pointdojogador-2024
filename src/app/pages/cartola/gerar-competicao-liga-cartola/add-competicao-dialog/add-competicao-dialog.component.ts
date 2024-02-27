@@ -50,7 +50,7 @@ export class AddCompeticaoDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      tipo_liga:  ['', Validators.required],
+      tipo_liga: ['', Validators.required],
       status_liga: ['', Validators.required],
       tx_descricao_liga: ['', Validators.required],
       rodada_ini: ['', Validators.required],
@@ -59,8 +59,13 @@ export class AddCompeticaoDialogComponent implements OnInit {
       hora_fim_inscricao: ['', Validators.required],
       valor_competicao: ['', Validators.required],
       valor_tx_adm: ['', Validators.required],
-      link_grupo_wapp:['', Validators.required]
+      link_grupo_wapp: ['', Validators.required]
     });
+
+
+    if (this.data.data_parm_competicao) {
+      this.form.patchValue(this.data.data_parm_competicao);
+    };
 
     /* competicao_liga_id: 0,
     liga_id: 0, */
@@ -69,7 +74,6 @@ export class AddCompeticaoDialogComponent implements OnInit {
   public onSubmit() {
 
     if (this.form.valid) {
-      console.log('DIALOG');
       this.dialogRef.close(this.form.value);
     }
   }

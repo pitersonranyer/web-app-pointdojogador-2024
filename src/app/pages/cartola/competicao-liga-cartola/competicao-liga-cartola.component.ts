@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ApiCartolaService } from 'src/app/service/api.cartola';
 
 
 
@@ -11,26 +12,29 @@ import { ActivatedRoute } from '@angular/router';
 export class CompeticaoLigaCartolaComponent implements OnInit {
  
   competicao: any;
-  nome_liga = '';
-  path_image = '';
+  competicoes = [];
 
-  constructor( private route: ActivatedRoute) { }
+  constructor( private route: ActivatedRoute, private apiCartolaService: ApiCartolaService) { }
 
   ngOnInit() {
 
-
     this.route.queryParams.subscribe(params => {
       this.competicao = params;
-      this.nome_liga = this.competicao.nome_liga
-      this.path_image = this.competicao.path_image
     });
 
-  
+    this.listarCompeticaoLigaVitrine()
    
   }
 
   
+  listarCompeticaoLigaVitrine() {
 
+    this.apiCartolaService.listarCompeticaoLigaVitrine(this.competicao.liga_id)
+      .subscribe((competicaoes) => {
+        this.competicoes = competicaoes;
+      })
+
+  }
   
 
 }

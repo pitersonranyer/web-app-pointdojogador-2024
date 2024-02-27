@@ -106,4 +106,10 @@ export class ApiCartolaService {
     return this.http.get<any[]>(url);
   }
 
+  listarCompeticaoLigaVitrine(liga_id: number): Observable<any[]> {
+    const url = this.utilService.getUrlBackend() + `/competicaoLigaCartola/listarCompeticaoLigaVitrine/${liga_id}`;
+    return this.http.get<any[]>(url);
+  }
+
+
 }
