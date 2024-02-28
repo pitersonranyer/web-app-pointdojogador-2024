@@ -11,7 +11,8 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 })
 export class AddCompeticaoDialogComponent implements OnInit {
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-  // public tiposLigas = ["Rodada", "Mensal", "1º Turno", "2º Turno", "Anual"];
+  
+  public dadosForm: any;
 
   public tiposLigas = [
     {
@@ -50,6 +51,7 @@ export class AddCompeticaoDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.fb.group({
+      
       tipo_liga: ['', Validators.required],
       status_liga: ['', Validators.required],
       tx_descricao_liga: ['', Validators.required],
@@ -73,8 +75,14 @@ export class AddCompeticaoDialogComponent implements OnInit {
 
   public onSubmit() {
 
+      this.dadosForm = this.form.value;
+
+      this.dadosForm.competicao_liga_id = this.data.data_parm_competicao.competicao_liga_id;
+      this.dadosForm.liga_id = this.data.data_parm_competicao.liga_id;
+
+
     if (this.form.valid) {
-      this.dialogRef.close(this.form.value);
+      this.dialogRef.close(this.dadosForm);
     }
   }
 

@@ -67,7 +67,7 @@ export class GerarCompeticaoLigaCartolaComponent implements OnInit {
         }
 
         dadosCompeticao.liga_id = this.competicao.liga_id;
-        
+
         /* cadastrar ou alterar competição */
         this.apiCartolaService.cadastrarCompeticaoLigaCartola(dadosCompeticao)
           .subscribe(() => {

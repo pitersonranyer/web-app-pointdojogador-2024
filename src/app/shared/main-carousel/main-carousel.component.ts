@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { SwiperConfigInterface, SwiperPaginationInterface } from '../../theme/components/swiper/swiper.module';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-carousel',
@@ -7,7 +8,7 @@ import { SwiperConfigInterface, SwiperPaginationInterface } from '../../theme/co
   styleUrls: ['./main-carousel.component.scss']
 })
 export class MainCarouselComponent implements OnInit {
-  @Input('slides') slides: Array<any> = [];
+  @Input('ligas') ligas: Array<any> = [];
  
   public config: SwiperConfigInterface = {};
 
@@ -16,9 +17,16 @@ export class MainCarouselComponent implements OnInit {
     clickable: true
   };
   
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() { }
+
+  listarCompeticaoLiga(competicao: any) {
+
+    this.router.navigate(['/competicaoLigaCartola'], { queryParams: competicao });
+
+  }
+
 
   ngAfterViewInit(){
     this.config = {

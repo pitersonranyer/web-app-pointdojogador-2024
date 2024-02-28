@@ -15,6 +15,14 @@ import { SwiperConfigInterface } from 'src/app/theme/components/swiper/swiper.mo
 })
 export class HomeComponent implements OnInit {
 
+//  public ligas = [
+//    { title: 'LIGA POINT DO JOGADOR', subtitle: '10,00 R$ por time', image: 'assets/images/carousel/bannerPoint.jpg' },
+//    { title: 'LIGA CANARINHO', subtitle: '3,50 R$ por time', image: 'assets/images/carousel/bannerCanarinho.jpg' },
+//    /* { title: 'The biggest sale', subtitle: 'Special for today', image: 'assets/images/carousel/banner3.jpg' },
+//    { title: 'Summer collection', subtitle: 'New Arrivals On Sale', image: 'assets/images/carousel/banner4.jpg' },
+//    { title: 'The biggest sale', subtitle: 'Special for today', image: 'assets/images/carousel/banner5.jpg' } */
+//  ];
+
   times = [];
   usuario_id = 0;
   partidas = [];
@@ -47,13 +55,13 @@ export class HomeComponent implements OnInit {
     
   }
 
-  public listarLigasCartola(){
+   public listarLigasCartola(){
     this.apiCartolaService.listarLigasCartola()
     .subscribe((resLigas) => {
       this.ligas = resLigas;
      })
 
-  }
+  } 
 
   listarPartidas() {
 
