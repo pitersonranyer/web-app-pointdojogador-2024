@@ -1,0 +1,79 @@
+.panel {
+    position: relative;
+    background: HSL(0, 0%, 100%);
+    padding: 25px 15px 70px;
+    border-radius: 16px;
+    margin: 20px 0;
+    color: HSL(0, 0%, 47.8%);
+    box-shadow: 0 1px 2px #00000040;
+    min-height: 200px;
+}
+
+.search-bar{
+    form{
+        input{
+            height: 28px;
+            border: none;
+            padding: 0;
+            border-radius: 15px;
+            outline: none;
+            color: #444;
+            width: 0;
+            overflow: hidden;
+            transition: 0.3s;
+            &.show{
+               padding: 0 8px;
+               width: 250px;
+            }
+        }       
+    }
+}
+
+/* time */
+.card-time {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 4px #00000040;
+    color: HSL(0, 0%, 47.8%);
+    padding: 10px;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.ordem-pontuacao{
+    font-weight: 400;
+    font-size: 12px;
+}
+
+.ordem {
+    text-align: center;
+    margin: 0 0 5px;
+}
+
+.escudo-time-cartola {
+    padding: 10px;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+}
+
+
+.nome-time-criador .time {
+    font-weight: 700;
+    font-size: 0.8rem;
+    margin: 0;
+}
+
+.nome-time-criador .criador{
+    font-size: 0.7rem;
+    margin: 0;
+}
+
+
+
+.iconAdd {
+  margin-left: auto;
+  width: 25px;
+}

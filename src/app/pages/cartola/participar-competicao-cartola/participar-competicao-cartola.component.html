@@ -1,0 +1,56 @@
+<div class="panel">
+  <mat-card-actions align="end">
+    <div fxLayout="row" fxLayoutAlign="start center" class="search-bar">
+      <form method="get" fxLayoutAlign="start center">
+        <input type="text" placeholder="pesquisar time..." [(ngModel)]="searchText" name="searchText"
+          class="mat-elevation-z3" [class.show]="toggleSearchBar">
+        <button mat-icon-button (click)="toggleSearchBar = !toggleSearchBar" type="button">
+          <mat-icon>search</mat-icon>
+        </button>
+      </form>
+    </div>
+  </mat-card-actions>
+  <mat-card-actions align="end">
+    <button mat-button>
+      <mat-icon>get_app</mat-icon>
+      Importar
+    </button>
+    <button mat-button>
+      <mat-checkbox color="primary" (change)="updateCheck()" class="example-margin" [(ngModel)]="selectAll">
+        <span style="font-weight: bold;">Todos</span>
+      </mat-checkbox>
+    </button>
+
+    <button mat-button (click)="salvarTimes()">
+      <mat-icon color="primary">save</mat-icon>
+      Salvar
+    </button>
+
+  </mat-card-actions>
+
+
+  <div *ngIf="(times | filter: searchText).length > 0; else noResults">
+    <div class="card card-time" *ngFor="let time of times | filter: searchText; let i = index">
+      <div class="ordem-pontuacao">
+        <p class="ordem">{{i + 1}}º</p>
+        <!---->
+      </div><img class="escudo-time-cartola" src="{{time.url_escudo_png}}">
+      <div class="nome-time-criador">
+        <p class="time">{{time.nome}}</p>
+        <p class="criador">{{time.nome_cartola}}</p>
+      </div>
+
+      <div class="iconAdd">
+        <mat-checkbox color="primary" (change)="isAllSelected($event, time)" [(ngModel)]="time.checked">
+        </mat-checkbox>
+      </div>
+    </div>
+  </div>
+
+
+  <ng-template #noResults>
+    <p>Nenhum time encontrado "{{searchText}}".</p>
+  </ng-template>
+
+
+</div>

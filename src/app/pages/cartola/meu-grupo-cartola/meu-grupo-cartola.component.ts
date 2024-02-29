@@ -35,7 +35,9 @@ export class MeuGrupoCartolaComponent implements OnInit {
 
   ngOnInit() {
 
-    this.listarGruposUsuario();
+    if (this.usuario_id != 0) {
+      this.listarGruposUsuario();
+    }
 
   }
 
@@ -91,19 +93,19 @@ export class MeuGrupoCartolaComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(importGroup => {
       if (importGroup) {
-   
+
         let parm = {
           grupo_id: importGroup.grupo_id,
           nome_grupo: importGroup.nome_grupo,
           usuario_id: importGroup.usuario_id,
-          slugs:  importGroup.arraySlugs,
+          slugs: importGroup.arraySlugs,
         }
 
         this.apiCartolaService.importarGrupoCartola(parm)
           .subscribe(() => {
             this.listarGruposUsuario();
           })
-        
+
       }
     });
   }

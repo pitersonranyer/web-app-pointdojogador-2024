@@ -34,8 +34,9 @@ export class MeuTimeCartolaComponent implements OnInit {
 
   ngOnInit() {
 
-
-    this.listarMeusTimesFavoritos();
+    if (this.usuario_id != 0) {
+      this.listarMeusTimesFavoritos();
+    }
 
   }
 

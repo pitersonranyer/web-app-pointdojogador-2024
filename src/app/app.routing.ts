@@ -22,6 +22,7 @@ export const routes: Routes = [
             { path: 'competicaoLigaCartola', loadChildren: () => import('./pages/cartola/competicao-liga-cartola/competicao-liga-cartola.module').then(m => m.CompeticaoLigaCartolaModule), data: { breadcrumb: 'Competição Liga' } },
             { path: 'gerarCompeticaoLigaCartola', loadChildren: () => import('./pages/cartola/gerar-competicao-liga-cartola/gerar-competicao-liga-cartola.module').then(m => m.GerarCompeticaoLigaCartolaModule), data: { breadcrumb: 'Gerar Competição Liga' } },
             { path: 'gerarLigaCartola', loadChildren: () => import('./pages/cartola/gerar-liga-cartola/gerar-liga-cartola.module').then(m => m.GerarLigaCartolaModule), data: { breadcrumb: 'Gerar Liga' } },
+            { path: 'participarCompeticaoCartola', loadChildren: () => import('./pages/cartola/participar-competicao-cartola/participar-competicao-cartola.module').then(m => m.ParticiparCompeticaoCartolaModule), data: { breadcrumb: 'Participar Competicao' } },
             
             { path: 'sign-in', loadChildren: () => import('./pages/authentication/sign-in/sign-in.module').then(m => m.SignInModule), data: { breadcrumb: 'Sign In ' } },
         ]
