@@ -111,5 +111,10 @@ export class ApiCartolaService {
     return this.http.get<any[]>(url);
   }
 
+  importarTimeFavoritoCompeticaoCartola(parm: any) {
+    const url = this.utilService.getUrlBackend() + `/competicaoLigaCartola/importarTimeFavoritoCompeticaoCartola`;
+    return this.http.post<any[]>(url, parm);
+  }
+
 
 }

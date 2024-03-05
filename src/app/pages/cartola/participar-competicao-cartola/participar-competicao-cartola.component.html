@@ -1,9 +1,38 @@
 <div class="panel">
+
+
+  <mat-card fxLayout="row wrap" fxLayout="column" fxLayoutAlign="center center" class="text-center py-5">
+    <h1 class="mt-3">Fala jogador, {{nomeUsuario}}</h1>
+    <p class="text-muted">Bem vindo a Rodada #1 do Cartola FC.</p>
+    <p class="text-muted">Os 10 primeiros times mais pontuados receberão a premiação. </p>
+      <p class="text-muted"><a href="javascript:void(0)"> Saiba Mais </a></p>
+  
+      <p class="text-muted">Antes de cadastrar seu(s) time(s) verifique seu saldo.</p>
+
+
+    <div class="divider"></div>
+
+    <div fxFlex="100" fxFlex.gt-xs="33.3">
+      <div fxLayout="column" fxLayoutAlign="center center" class="text-center">
+        <h3 class="primary-text py-2">Saldo atual: &nbsp;{{saldoUsuario | currency : 'BRL'}}</h3>
+      </div>
+    </div>
+    <div fxFlex="100" fxFlex.gt-xs="33.3" ngClass.xs="mt-2">
+      <div fxLayout="column" fxLayoutAlign="center center">
+        <h3 class="warn-text py-2">Saldo após pagamento: &nbsp;{{saldoAposPgto | currency : 'BRL'}}</h3>
+      </div>
+    </div>
+
+  </mat-card>
+
+ 
+
+
   <mat-card-actions align="end">
     <div fxLayout="row" fxLayoutAlign="start center" class="search-bar">
       <form method="get" fxLayoutAlign="start center">
-        <input type="text" placeholder="pesquisar time..." [(ngModel)]="searchText" name="searchText"
-          class="mat-elevation-z3" [class.show]="toggleSearchBar">
+        <input type="text" placeholder="pesquisar time..." name="filterText" [(ngModel)]="filterText"
+          (keyup)="filterData()" class="mat-elevation-z3" [class.show]="toggleSearchBar">
         <button mat-icon-button (click)="toggleSearchBar = !toggleSearchBar" type="button">
           <mat-icon>search</mat-icon>
         </button>
@@ -11,12 +40,13 @@
     </div>
   </mat-card-actions>
   <mat-card-actions align="end">
-    <button mat-button>
+    <button mat-button (click)="openImportaDialog()">
       <mat-icon>get_app</mat-icon>
       Importar
     </button>
     <button mat-button>
-      <mat-checkbox color="primary" (change)="updateCheck()" class="example-margin" [(ngModel)]="selectAll">
+      <mat-checkbox color="primary" (change)="updateCheck()" class="example-margin" [(ngModel)]="selectAll"
+        [disabled]="selecionar">
         <span style="font-weight: bold;">Todos</span>
       </mat-checkbox>
     </button>
@@ -29,28 +59,23 @@
   </mat-card-actions>
 
 
-  <div *ngIf="(times | filter: searchText).length > 0; else noResults">
-    <div class="card card-time" *ngFor="let time of times | filter: searchText; let i = index">
-      <div class="ordem-pontuacao">
-        <p class="ordem">{{i + 1}}º</p>
-        <!---->
-      </div><img class="escudo-time-cartola" src="{{time.url_escudo_png}}">
-      <div class="nome-time-criador">
-        <p class="time">{{time.nome}}</p>
-        <p class="criador">{{time.nome_cartola}}</p>
-      </div>
 
-      <div class="iconAdd">
-        <mat-checkbox color="primary" (change)="isAllSelected($event, time)" [(ngModel)]="time.checked">
-        </mat-checkbox>
-      </div>
+  <div class="card card-time" *ngFor="let time of times; let i = index">
+    <div class="ordem-pontuacao">
+      <p class="ordem">{{i + 1}}º</p>
+      <!---->
+    </div><img class="escudo-time-cartola" src="{{time.url_escudo_png}}">
+    <div class="nome-time-criador">
+      <p class="time">{{time.nome}}</p>
+      <p class="criador">{{time.nome_cartola}}</p>
+    </div>
+
+    <div class="iconAdd">
+      <mat-checkbox color="primary" (change)="isAllSelected($event, time)" [(ngModel)]="time.checked">
+      </mat-checkbox>
     </div>
   </div>
 
-
-  <ng-template #noResults>
-    <p>Nenhum time encontrado "{{searchText}}".</p>
-  </ng-template>
 
 
 </div>
