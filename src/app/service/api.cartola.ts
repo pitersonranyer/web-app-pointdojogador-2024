@@ -116,5 +116,14 @@ export class ApiCartolaService {
     return this.http.post<any[]>(url, parm);
   }
 
+  addTimeCompeticaoCartola(parm: any) {
+    const url = this.utilService.getUrlBackend() + `/competicaoLigaCartola/addTimeCompeticaoCartola`;
+    return this.http.post<any[]>(url, parm);
+  }
+
+  listaTimeFavoritoUsuarioCompeticao(usuario_id: number, competicao_liga_id: number): Observable<any[]> {
+    const url = this.utilService.getUrlBackend() + `/competicaoLigaCartola/listaTimeFavoritoUsuarioCompeticao/${usuario_id}/${competicao_liga_id}`;
+    return this.http.get<any[]>(url);
+  }
 
 }

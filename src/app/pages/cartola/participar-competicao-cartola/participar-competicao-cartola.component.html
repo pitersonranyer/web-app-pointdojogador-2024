@@ -17,11 +17,6 @@
         <h3 class="primary-text py-2">Saldo atual: &nbsp;{{saldoUsuario | currency : 'BRL'}}</h3>
       </div>
     </div>
-    <div fxFlex="100" fxFlex.gt-xs="33.3" ngClass.xs="mt-2">
-      <div fxLayout="column" fxLayoutAlign="center center">
-        <h3 class="warn-text py-2">Saldo após pagamento: &nbsp;{{saldoAposPgto | currency : 'BRL'}}</h3>
-      </div>
-    </div>
 
   </mat-card>
 
@@ -71,8 +66,8 @@
     </div>
 
     <div class="iconAdd">
-      <mat-checkbox color="primary" (change)="isAllSelected($event, time)" [(ngModel)]="time.checked">
-      </mat-checkbox>
+      <mat-checkbox color="primary" (change)="isAllSelected($event, time)" [(ngModel)]="time.checked" *ngIf="!time.achou">   </mat-checkbox>
+      <mat-icon *ngIf="time.achou" >block</mat-icon>
     </div>
   </div>
 

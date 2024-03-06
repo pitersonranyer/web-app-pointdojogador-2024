@@ -8,6 +8,8 @@ import { AuthService } from 'src/app/service/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AppSettings, Settings } from 'src/app/app.settings';
 import { ImportaTimeFavoritoDialogComponent } from '../meu-time-cartola/importa-time-favorito-dialog/importa-time-favorito-dialog.component';
+import { ResumoSaldoDialogComponent } from './resumo-saldo-dialog/resumo-saldo-dialog.component';
+
 
 
 @Component({
@@ -26,12 +28,12 @@ export class ParticiparCompeticaoCartolaComponent implements OnInit {
   selecionar = false;
   timeFilter = [];
   timeSelecaoSalvar = [];
+  competicao: any;
+  count =  0;
+  saldoUsuario = 0
 
 
-  saldoUsuario = 0;
   nomeUsuario = '';
-  emailUsuario = '';
-  uidUsuario = '';
   saldoAposPgto = 0;
   public settings: Settings;
   constructor(private router: Router,
@@ -46,7 +48,13 @@ export class ParticiparCompeticaoCartolaComponent implements OnInit {
 
   ngOnInit() {
 
-    this.listarMeusTimesFavoritos()
+
+    this.route.queryParams.subscribe(params => {
+      this.competicao = params;
+    });
+
+
+    this.listarMeusTimesFavoritos();
     this.recuperarDadosUsuario();
 
 
@@ -56,11 +64,8 @@ export class ParticiparCompeticaoCartolaComponent implements OnInit {
     this.usuarioService.recuperarUsuario(this.authService.currentUserPointValue.email).subscribe((usuario: any) => {
 
       this.usuario = usuario;
-      this.saldoUsuario = usuario.saldo;
       this.nomeUsuario = usuario.nome;
-      this.emailUsuario = usuario.email;
-      this.uidUsuario = usuario.uid;
-      this.saldoAposPgto = usuario.saldo;
+      this.saldoUsuario = usuario.saldo;
 
     });
 
@@ -69,8 +74,10 @@ export class ParticiparCompeticaoCartolaComponent implements OnInit {
 
   listarMeusTimesFavoritos() {
 
-    this.apiCartolaService.listarTimeFavoritoUsuario(this.usuario_id)
+    this.apiCartolaService.listaTimeFavoritoUsuarioCompeticao(this.usuario_id, this.competicao.competicao_liga_id)
       .subscribe((times) => {
+        console.log(times);
+
         this.timeFilter = times;
         this.times = this.timeFilter;
 
@@ -85,7 +92,9 @@ export class ParticiparCompeticaoCartolaComponent implements OnInit {
 
     if (this.selectAll === true) {
       for (let i = 0; i < this.times.length; i++) {
-        this.times[i].checked = true;
+        if (!this.times[i].achou) {
+          this.times[i].checked = true;
+        }
       }
 
     } else {
@@ -117,17 +126,71 @@ export class ParticiparCompeticaoCartolaComponent implements OnInit {
 
 
   salvarTimes() {
-    let count = 0
-    this.timeSelecaoSalvar = [];
+
     
+
+    this.count = 0
+    this.timeSelecaoSalvar = [];
+
+
     for (let i = 0; i < this.times.length; i++) {
       if (this.times[i].checked) {
-        this.timeSelecaoSalvar.push(this.times[i])
-        count++
+        this.timeSelecaoSalvar.push(this.times[i].time_id)
+        this.count++
       }
     }
-    console.log(count);
-    console.log(this.timeSelecaoSalvar);
+
+    let parmTimeCompeticao = {
+      competicao_liga_id: this.competicao.competicao_liga_id,
+      slugs: this.timeSelecaoSalvar,
+    }
+
+    console.log(this.count);
+    console.log(this.competicao.valor_competicao);
+
+    let saldoWork = this.count * this.competicao.valor_competicao;
+
+
+    let resumo = {
+      qtde_time: this.count,
+      saldoDev: 10000 - saldoWork,
+    }
+
+  
+
+    this.alertSalvarTimes(resumo);
+
+    /* this.usuarioService.debitarSaldoUsuario(this.usuario)
+      .subscribe((debitou) => {
+
+        if (debitou) {
+
+          this.apiCartolaService.addTimeCompeticaoCartola(parmTimeCompeticao)
+            .subscribe((retTimes) => {
+
+            })
+
+        }
+
+      }); 
+ */
+
+  }
+
+   alertSalvarTimes(resumo: any){
+    const dialogRef = this.dialog.open(ResumoSaldoDialogComponent, {
+      data: {
+        resumo: resumo,
+      },
+      panelClass: ['theme-dialog'],
+      autoFocus: false,
+      direction: (this.settings.rtl) ? 'rtl' : 'ltr'
+    });
+    dialogRef.afterClosed().subscribe(category => { 
+      if(category){    
+        console.log(category);
+      }
+    });
   }
 
 
@@ -156,7 +219,7 @@ export class ParticiparCompeticaoCartolaComponent implements OnInit {
 
         let parm = {
           usuario_id: importTimesFavoritos.usuario_id,
-          competicao_liga_id: 1,
+          competicao_liga_id: this.competicao.competicao_liga_id,
           slugs: importTimesFavoritos.arraySlugs,
         }
 
@@ -171,9 +234,9 @@ export class ParticiparCompeticaoCartolaComponent implements OnInit {
 
             for (let i = 0; i < retTimes.length; i++) {
               for (let x = 0; x < this.times.length; x++) {
-                if ( retTimes[i] === this.times[x].time_id) {
+                if (retTimes[i] === this.times[x].time_id) {
                   this.times[x].checked = true;
-                } 
+                }
               }
             }
 

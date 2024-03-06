@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../../shared/shared.module';
 import {  ParticiparCompeticaoCartolaComponent } from './participar-competicao-cartola.component';
 import { FilterPipe } from './filter.pipe';
-import { ImportaTimeFavoritoDialogComponent } from '../meu-time-cartola/importa-time-favorito-dialog/importa-time-favorito-dialog.component';
+import { ResumoSaldoDialogComponent } from './resumo-saldo-dialog/resumo-saldo-dialog.component';
 
 
 export const routes: Routes = [
@@ -21,7 +21,7 @@ export const routes: Routes = [
     FormsModule
   ],
   declarations: [
-    ParticiparCompeticaoCartolaComponent, FilterPipe
+    ParticiparCompeticaoCartolaComponent, FilterPipe, ResumoSaldoDialogComponent
   ]
 })
 export class ParticiparCompeticaoCartolaModule { }
