@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 export class CompeticaoLigaCartolaComponent implements OnInit {
  
   competicao: any;
+  aberto = false;
   competicoes = [];
 
   constructor( private route: ActivatedRoute, private apiCartolaService: ApiCartolaService, private router: Router) { }
@@ -41,6 +42,12 @@ export class CompeticaoLigaCartolaComponent implements OnInit {
   participarCompeticaoCartola(competicao: any) {
 
     this.router.navigate(['/participarCompeticaoCartola'], { queryParams: competicao });
+
+  }
+
+  viewTimesCompeticao(competicao: any) {
+
+    this.router.navigate(['/viewTimesCompeticao'], { queryParams: competicao });
 
   }
   

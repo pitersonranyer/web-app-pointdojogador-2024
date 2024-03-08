@@ -1,0 +1,37 @@
+<div class="panel">
+
+  <mat-card-actions align="end">
+    <div fxLayout="row" fxLayoutAlign="start center" class="search-bar">
+      <form method="get" fxLayoutAlign="start center">
+        <input type="text" placeholder="pesquisar time..." name="filterText" [(ngModel)]="filterText"
+          (keyup)="filterData()" class="mat-elevation-z3" [class.show]="toggleSearchBar">
+        <button mat-icon-button (click)="toggleSearchBar = !toggleSearchBar" type="button">
+          <mat-icon>search</mat-icon>
+        </button>
+      </form>
+    </div>
+
+
+
+    <button mat-button  (click)="exportarTimes()">
+      <mat-icon>file_copy</mat-icon>
+      Copiar Times
+    </button>
+  </mat-card-actions>
+ 
+  <div class="card-time" *ngFor="let time of times; let i = index" (click)="listarAtletaTime(time, i)">
+    <div class="ordem-pontuacao">
+      <p class="ordem">{{i + 1}}º</p>
+      <!---->
+    </div><img class="escudo-time-cartola" src="{{time.url_escudo_png}}">
+    <div class="nome-time-criador">
+      <p class="time">{{time.nome}}</p>
+      <p class="criador">{{time.nome_cartola}}</p>
+    </div>
+    <div class="pontos">
+      <p class="total text-green">{{time.pontos}}</p>
+      <p class="pontuados">12/{{time.qtde_jogadores_entrou_em_campo}}</p>
+    </div>
+  </div>
+
+</div>

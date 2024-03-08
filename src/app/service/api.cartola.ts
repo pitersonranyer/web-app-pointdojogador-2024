@@ -126,4 +126,9 @@ export class ApiCartolaService {
     return this.http.get<any[]>(url);
   }
 
+  listarTimeCompeticao(competicao_liga_id: number): Observable<any> {
+    const url = this.utilService.getUrlBackend() + `/competicaoLigaCartola/listarTimeCompeticao/${competicao_liga_id}`;
+    return this.http.get<any[]>(url);
+  }
+
 }

@@ -23,6 +23,9 @@ export const routes: Routes = [
             { path: 'gerarCompeticaoLigaCartola', loadChildren: () => import('./pages/cartola/gerar-competicao-liga-cartola/gerar-competicao-liga-cartola.module').then(m => m.GerarCompeticaoLigaCartolaModule), data: { breadcrumb: 'Gerar Competição Liga' } },
             { path: 'gerarLigaCartola', loadChildren: () => import('./pages/cartola/gerar-liga-cartola/gerar-liga-cartola.module').then(m => m.GerarLigaCartolaModule), data: { breadcrumb: 'Gerar Liga' } },
             { path: 'participarCompeticaoCartola', loadChildren: () => import('./pages/cartola/participar-competicao-cartola/participar-competicao-cartola.module').then(m => m.ParticiparCompeticaoCartolaModule), data: { breadcrumb: 'Participar Competicao' } },
+            { path: 'pixCheckout', loadChildren: () => import('./pages/pix-checkout/pix-checkout.module').then(m => m.PixCheckoutModule), data: { breadcrumb: 'Pix' } },
+            { path: 'viewTimesCompeticao', loadChildren: () => import('./pages/cartola/listar-time-competicao/listar-time-competicao.module').then(m => m.ListarTimeCompeticaoModule), data: { breadcrumb: 'Times Competição' } },
+            
             
             { path: 'sign-in', loadChildren: () => import('./pages/authentication/sign-in/sign-in.module').then(m => m.SignInModule), data: { breadcrumb: 'Sign In ' } },
         ]

@@ -1,0 +1,35 @@
+<div fxLayout="row wrap">
+  <div fxFlex="100" fxLayout="column" fxLayoutAlign="start start" class="py-3 px-1">
+    <span class="text-muted">
+      <h1>Deposito via PIX</h1>
+    </span>
+
+    <form [formGroup]="form">
+      <div fxLayout="row wrap">
+        <div fxFlex="100" fxFlex.gt-sm="50" class="px-1">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Valor do Deposito</mat-label>
+            <input matInput appCurrencyI18n placeholder="Informe o valor" [(ngModel)]="valorPix" formControlName="valorPixCurrency" required>
+            <mat-error>Informe o valor</mat-error>
+          </mat-form-field>
+        </div>
+        <div fxFlex="100" fxFlex.gt-sm="50" class="px-1">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Descrição (opcional)</mat-label>
+            <input matInput placeholder="Descrição" formControlName="cardNumber" [(ngModel)]="descPix"
+              formControlName="descPixCr">
+          </mat-form-field>
+        </div>
+  
+        <div fxLayout="row" fxLayoutAlign="space-between center" class="w-100">
+          <button mat-raised-button color="warn" type="button" routerLink="/">Fechar</button>
+          <button mat-raised-button color="primary" (click)="gerarCobranca()" >Salvar</button>
+        </div>
+  
+      </div>
+    </form>
+    
+  </div>
+
+  
+</div>

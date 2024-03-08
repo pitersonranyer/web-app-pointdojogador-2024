@@ -28,7 +28,11 @@
 
   </div>
 
-  <div class="iconAdd" (click)="participarCompeticaoCartola(competicao)" >
+  <div *ngIf="aberto"  class="iconAdd" (click)="participarCompeticaoCartola(competicao)" >
       <mat-icon class="customIconSize">input</mat-icon>
   </div>
+
+  <div *ngIf="!aberto" class="iconAdd" (click)="viewTimesCompeticao(competicao)" >
+    <mat-icon class="customIconSize">visibility</mat-icon>
+</div>
 </div>

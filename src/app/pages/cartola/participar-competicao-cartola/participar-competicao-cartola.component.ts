@@ -76,8 +76,6 @@ export class ParticiparCompeticaoCartolaComponent implements OnInit {
 
     this.apiCartolaService.listaTimeFavoritoUsuarioCompeticao(this.usuario_id, this.competicao.competicao_liga_id)
       .subscribe((times) => {
-        console.log(times);
-
         this.timeFilter = times;
         this.times = this.timeFilter;
 
