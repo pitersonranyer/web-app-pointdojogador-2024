@@ -1,5 +1,5 @@
 <div fxLayout="row wrap">
-  <div fxFlex="100" fxLayout="column" fxLayoutAlign="start start" class="py-3 px-1">
+  <div fxFlex="100" fxLayout="column" fxLayoutAlign="start start" class="py-3 px-1" *ngIf="!qrcodeTela">
     <span class="text-muted">
       <h1>Deposito via PIX</h1>
     </span>
@@ -9,7 +9,8 @@
         <div fxFlex="100" fxFlex.gt-sm="50" class="px-1">
           <mat-form-field appearance="outline" class="w-100">
             <mat-label>Valor do Deposito</mat-label>
-            <input matInput appCurrencyI18n placeholder="Informe o valor" [(ngModel)]="valorPix" formControlName="valorPixCurrency" required>
+            <input matInput appCurrencyI18n placeholder="Informe o valor" [(ngModel)]="valorPix"
+              formControlName="valorPixCurrency" required>
             <mat-error>Informe o valor</mat-error>
           </mat-form-field>
         </div>
@@ -20,16 +21,108 @@
               formControlName="descPixCr">
           </mat-form-field>
         </div>
-  
+
         <div fxLayout="row" fxLayoutAlign="space-between center" class="w-100">
           <button mat-raised-button color="warn" type="button" routerLink="/">Fechar</button>
-          <button mat-raised-button color="primary" (click)="gerarCobranca()" >Salvar</button>
+          <button mat-raised-button color="primary" (click)="gerarCobranca()">Salvar</button>
         </div>
-  
+
       </div>
     </form>
-    
+
   </div>
 
-  
+  <div fxFlex="100" fxLayout="column" fxLayoutAlign="start start" class="py-3 px-1" *ngIf="qrcodeTela">
+    <div class="view">
+      <div class="view__title">
+        <h1 style="color: white;">Detalhes do pedido</h1>
+      </div>
+      <div class="view__header"><img class="header-logo" src="assets/images/avatars/point.png" alt="Logo">
+        <div class="cart">
+          <div class="cart__content"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+              xmlns="http://www.w3.org/2000/svg" class="cart__content__img">
+              <path d="M9.00001 16L16 16L19 4H21" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              </path>
+              <path d="M16 14L18 6H6V12L16 14Z" fill="currentColor"></path>
+              <path
+                d="M9.00001 19C9.5523 19 10 18.5523 10 18C10 17.4477 9.5523 17 9.00001 17C8.44772 17 8 17.4477 8 18C8 18.5523 8.44772 19 9.00001 19Z"
+                fill="currentColor"></path>
+              <path
+                d="M17 19C17.5523 19 18 18.5523 18 18C18 17.4477 17.5523 17 17 17C16.4477 17 16 17.4477 16 18C16 18.5523 16.4477 19 17 19Z"
+                fill="currentColor"></path>
+            </svg><span class="cart__content__total">R$ {{valorDB.toFixed(2)}}</span>
+            <div class="cart__content__dropdown"><svg aria-hidden="true" focusable="false" data-prefix="far"
+                data-icon="angle-down" class="svg-inline--fa fa-angle-down fa-w-10 " role="img"
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                <path fill="currentColor"
+                  d="M151.5 347.8L3.5 201c-4.7-4.7-4.7-12.3 0-17l19.8-19.8c4.7-4.7 12.3-4.7 17 0L160 282.7l119.7-118.5c4.7-4.7 12.3-4.7 17 0l19.8 19.8c4.7 4.7 4.7 12.3 0 17l-148 146.8c-4.7 4.7-12.3 4.7-17 0z">
+                </path>
+              </svg></div>
+          </div>
+          <div class="cart__details">
+            <ul class="cart__details__order">
+              <li>Total<span>R$ {{valorDB.toFixed(2)}}</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="view__body">
+        <ul class="steps">
+          <li class="steps__item steps__item--active steps__item--one"></li>
+        </ul>
+        <div class="title">
+          <div class="title__content">
+            <div class="title__header">
+              <h2 class="text-primaryBet">Digitalize o código PIX QR com seu telefone celular</h2>
+            </div>
+            <div class="title__header in-column"></div>
+          </div>
+        </div>
+        <div class="content pb-16">
+          <div class="content--centered"><img src={{qrcodeTela}} class="qr-code"><span class="subtitleQr"
+              id="digitable-line-subtitle-qr">Você está tendo
+              problemas para ler o código QR? Copie o código abaixo e insira-o manualmente.</span>
+            <div class="line line--long">
+              <span class="digitableLine">
+                 {{pixCopyPaste}}
+              </span>
+            </div>
+            <div class="copy" *ngIf="!btnCopy">
+              <button mat-raised-button color="primary" (click)="copiarTextPix()">Copiar</button>
+            </div>
+
+            <div class="copy" *ngIf="btnCopy">
+              <button mat-raised-button color="warn">Copiado</button>
+            </div>
+          </div>
+          <br>
+          <br>
+
+          <div class="banner">
+            <div class="banner__body"><img src="https://resources.checkoutogate.com/cashin/payment_method/square/IX.svg"
+                class="logo-square align-end" alt="Pix"></div>
+            <div class="banner__amount"><span class="subtitle">Total A Pagar</span><span class="total">R$
+                {{valorDB.toFixed(2)}}</span>
+            </div>
+          </div>
+
+
+          <div></div>
+          <div class="multiple-boxes pb-16"></div>
+          <footer>
+            <button [routerLink]="'/carteira'" mat-raised-button >Voltar</button>
+          </footer>
+        </div>
+        <div class="notes"><span class="note">Importante</span>
+          <ul class="notes__items">
+            <li>Para efetuar o seu depósito, é obrigatório que o titular do pagamento seja o mesmo titular da conta
+              bancária. Em caso de divergência nessas informações, o depósito será devolvido.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
 </div>

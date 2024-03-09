@@ -1,0 +1,87 @@
+<section class="content">
+  <div class="container-fluid">
+
+
+
+    <div class="view">
+      <div class="view__title">
+        <h1 style="color: white;">ADD CRÉDITOS USUÁRIO</h1>
+      </div>
+
+
+      <div>
+        <div
+          class="nh-NavigationHeaderModule nh-NavigationHeaderModule_DepositOverride nh-NavigationHeaderModule-wide ">
+          <div class="nh-NavigationHeaderModule_Title ">Informe o e-amail</div>
+        </div>
+      </div>
+
+      <form [formGroup]="form">
+        <div class="row">
+
+          
+
+          <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-3">
+              <mat-form-field class="example-full-width">
+                <mat-label>E-mail</mat-label>
+                <input matInput formControlName="email" [(ngModel)]="email">
+                <mat-icon matSuffix routerLinkActive="active" (click)="buscarUsuario()">search</mat-icon>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+              <mat-form-field class="example-full-width">
+                <mat-label>{{id}} - {{nome}}</mat-label>
+                <input matInput  disabled>
+                <mat-icon matSuffix>face</mat-icon>
+
+              </mat-form-field>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+              <mat-form-field class="example-full-width">
+                <mat-label>{{uid}}</mat-label>
+                <input matInput  disabled>
+                <mat-icon matSuffix>token</mat-icon>
+              </mat-form-field>
+            </div>
+            
+          </div>
+
+
+          <div class="bbm-BalancesModule">
+            <div class="bbm-Balances">
+              <div class="bbm-Balances_Container">
+                <div class="bbm-Balances_WithdrawableContainer">
+                  <div class="bbm-Balances_Withdrawable">
+                    <div class="bbm-Balances_Title ">Informe o Valor</div>
+                    <div class="bbm-Balances_Amount ">
+                      <mat-form-field class="example-full-width">
+                        <input matInput appCurrencyI18n placeholder="Valor depósito" type="text"
+                          class="example-right-align" [(ngModel)]="valorPix" formControlName="valorPixCurrency">
+                        <mat-icon matSuffix (click)="atualizarSaldo()">add</mat-icon>
+                      </mat-form-field>
+                    </div>
+
+                    <div class="bbm-Balances_Withdrawable">
+                      <div class="bbm-Balances_Title ">Saldo Disponível</div>
+                      <div class="bbm-Balances_Amount ">R$ {{saldo}}</div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </form>
+
+
+    </div>
+
+  </div>
+</section>

@@ -17,6 +17,7 @@ export class PixCheckoutComponent implements OnInit {
   valorDB = 0;
   qrcodeTela = '';
   pixCopyPaste = '';
+  btnCopy = false ;
 
   constructor(fb: FormBuilder, private gerarQrCodeService: ApiPixService, public authService: AuthService) {
     this.form = fb.group({
@@ -44,6 +45,21 @@ export class PixCheckoutComponent implements OnInit {
       this.qrcodeTela = pixResponse.imagemQrcode;
       this.pixCopyPaste = pixResponse.copyPaste
     });
+
+  }
+
+  copiarTextPix() {
+
+    this.pixCopyPaste;
+    this.btnCopy = false;
+    navigator.clipboard.writeText(this.pixCopyPaste)
+      .then(() => {
+        alert('Pix "Codigo QR", copiado com sucesso!');
+        this.btnCopy = true;
+      })
+
+    /* // Alert the copied text
+    alert("Copied the text: " + copyText); */
 
   }
 

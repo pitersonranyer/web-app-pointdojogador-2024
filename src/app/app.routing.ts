@@ -25,8 +25,9 @@ export const routes: Routes = [
             { path: 'participarCompeticaoCartola', loadChildren: () => import('./pages/cartola/participar-competicao-cartola/participar-competicao-cartola.module').then(m => m.ParticiparCompeticaoCartolaModule), data: { breadcrumb: 'Participar Competicao' } },
             { path: 'pixCheckout', loadChildren: () => import('./pages/pix-checkout/pix-checkout.module').then(m => m.PixCheckoutModule), data: { breadcrumb: 'Pix' } },
             { path: 'viewTimesCompeticao', loadChildren: () => import('./pages/cartola/listar-time-competicao/listar-time-competicao.module').then(m => m.ListarTimeCompeticaoModule), data: { breadcrumb: 'Times Competição' } },
-            
-            
+            { path: 'carteira', loadChildren: () => import('./pages/carteira/carteira.module').then(m => m.CarteiraModule), data: { breadcrumb: 'Carteira' } },
+            { path: 'gerenciarPerfil', loadChildren: () => import('./pages/gerenciar-perfil/gerenciar-perfil.module').then(m => m.CarteiraModule), data: { breadcrumb: 'Gerenciar Perfil' } },
+
             { path: 'sign-in', loadChildren: () => import('./pages/authentication/sign-in/sign-in.module').then(m => m.SignInModule), data: { breadcrumb: 'Sign In ' } },
         ]
     },

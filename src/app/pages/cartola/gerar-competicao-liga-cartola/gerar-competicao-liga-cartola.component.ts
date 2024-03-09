@@ -50,6 +50,7 @@ export class GerarCompeticaoLigaCartolaComponent implements OnInit {
 
 
   public openCouponDialog(data: any) {
+    
 
     const dialogRef = this.dialog.open(AddCompeticaoDialogComponent, {
       data: {

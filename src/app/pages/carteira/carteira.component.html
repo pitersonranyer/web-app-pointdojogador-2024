@@ -1,0 +1,52 @@
+<section class="content">
+  <div class="container-fluid">
+
+    <div class="view">
+      <div class="view__title">
+        <h1 style="color: white;">Carteira</h1>
+      </div>
+
+
+      <div>
+        <div
+          class="nh-NavigationHeaderModule nh-NavigationHeaderModule_DepositOverride nh-NavigationHeaderModule-wide ">
+          <div class="nh-NavigationHeaderModule_Title ">Saldo</div>
+        </div>
+      </div>
+
+      <div class="bbm-BalancesModule ">
+        <div class="bbm-Message ">
+          <div class="bbm-Message_Header ">Depósito</div>
+          <div class="bbm-Message_Text ">O seu saldo foi atualizado.</div>
+        </div>
+        <div class="bbm-Balances ">
+          <div class="bbm-Balances_Container">
+            <div class="bbm-Balances_WithdrawableContainer">
+              <div class="bbm-Balances_Withdrawable">
+                <div class="bbm-Balances_Title ">Disponível</div>
+                <div class="bbm-Balances_Amount ">R$ {{saldoUsuario}}</div>
+              </div>
+              <div class="bbm-Balances_ButtonsContainer">
+                <div class="bbm-Balances_Button" [routerLink]="'/pixCheckout'">
+                  <div class="bbm-Balances_DepositImage"></div>
+                  <div class="bbm-Balances_ButtonLabel ">Depositar</div>
+                </div>
+
+                <div class="bbm-Balances_Button" (click)="saqueViaWhastApp()">
+                  <div class="bbm-Balances_WithdrawImage"> </div>
+                  <div class="bbm-Balances_ButtonLabel ">Saque</div>
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+
+  </div>
+</section>

@@ -64,7 +64,6 @@ export class AddCompeticaoDialogComponent implements OnInit {
       link_grupo_wapp: ['', Validators.required]
     });
 
-
     if (this.data.data_parm_competicao) {
       this.form.patchValue(this.data.data_parm_competicao);
     };
@@ -77,7 +76,12 @@ export class AddCompeticaoDialogComponent implements OnInit {
 
       this.dadosForm = this.form.value;
 
-      this.dadosForm.competicao_liga_id = this.data.data_parm_competicao.competicao_liga_id;
+      if(this.data.data_parm_competicao.competicao_liga_id === null){
+        this.dadosForm.competicao_liga_id = 0;
+      }else{
+        this.dadosForm.competicao_liga_id = this.data.data_parm_competicao.competicao_liga_id;
+      }
+      
       this.dadosForm.liga_id = this.data.data_parm_competicao.liga_id;
 
 

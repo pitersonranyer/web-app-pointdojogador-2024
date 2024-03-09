@@ -31,6 +31,7 @@ export class GerarLigaCartolaComponent implements OnInit {
 
   listarLigaUsuario() {
 
+    console.log(this.usuario_id)
 
     this.apiCartolaService.listarLigaUsuario(this.usuario_id)
       .subscribe((resCompeticao) => {

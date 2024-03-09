@@ -131,4 +131,10 @@ export class ApiCartolaService {
     return this.http.get<any[]>(url);
   }
 
+  consultarMercadoStatus(): Observable<any> {
+    const url = this.utilService.getUrlBackend() + `/cartolaAPI/consultarMercadoStatus`;
+    return this.http.get<any>(url);
+  }
+
+
 }
