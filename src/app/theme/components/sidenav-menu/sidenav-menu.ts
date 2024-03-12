@@ -5,8 +5,9 @@ export const sidenavMenuItems = [
     new SidenavMenu (2, 'Cartola', null, null, null, true, 0), 
     new SidenavMenu (10, 'Jogos', '/jogosCartola', null, null, false, 2), 
     new SidenavMenu (10, 'Meus Times', '/meuTimeCartola', null, null, false, 2),
-    new SidenavMenu (10, 'Meus Grupos', '/meuGrupoCartola', null, null, false, 2),   
-    new SidenavMenu (10, 'Atletas Pontuados', '/atletaPontuadoCartola', null, null, false, 2),   
+    new SidenavMenu (10, 'Meus Grupos', '/meuGrupoCartola', null, null, false, 2),  
+   new SidenavMenu (10, 'Atletas Pontuados', '/atletaPontuadoCartola', null, null, false, 2),  
+   new SidenavMenu (3, 'Pix', '/pixCheckout', null, null, false, 0), 
 
    /*  new SidenavMenu (2, 'Fashion', null, null, null, true, 0), 
     new SidenavMenu (10, 'Women', null, null, null, true, 2),   
