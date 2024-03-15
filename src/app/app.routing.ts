@@ -29,6 +29,8 @@ export const routes: Routes = [
             { path: 'gerenciarPerfil', loadChildren: () => import('./pages/gerenciar-perfil/gerenciar-perfil.module').then(m => m.CarteiraModule), data: { breadcrumb: 'Gerenciar Perfil' } },
 
             { path: 'sign-in', loadChildren: () => import('./pages/authentication/sign-in/sign-in.module').then(m => m.SignInModule), data: { breadcrumb: 'Sign In ' } },
+            { path: 'verify-email-address', loadChildren: () => import('./pages/authentication/verify-email/verify-email.module').then(m => m.VerifyEmailModule), data: { breadcrumb: 'Verifica email' } },
+            { path: 'forgot-password', loadChildren: () => import('./pages/authentication/forgot-password/forgot-password.module').then(m => m.ForgotPasswordModule), data: { breadcrumb: 'Esqueceu a senha' } },
         ]
     },
     /* { path: 'landing', loadChildren: () => import('./landing/landing.module').then(m => m.LandingModule) }, */

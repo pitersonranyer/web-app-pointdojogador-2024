@@ -15,21 +15,14 @@ import { SwiperConfigInterface } from 'src/app/theme/components/swiper/swiper.mo
 })
 export class HomeComponent implements OnInit {
 
-//  public ligas = [
-//    { title: 'LIGA POINT DO JOGADOR', subtitle: '10,00 R$ por time', image: 'assets/images/carousel/bannerPoint.jpg' },
-//    { title: 'LIGA CANARINHO', subtitle: '3,50 R$ por time', image: 'assets/images/carousel/bannerCanarinho.jpg' },
-//    /* { title: 'The biggest sale', subtitle: 'Special for today', image: 'assets/images/carousel/banner3.jpg' },
-//    { title: 'Summer collection', subtitle: 'New Arrivals On Sale', image: 'assets/images/carousel/banner4.jpg' },
-//    { title: 'The biggest sale', subtitle: 'Special for today', image: 'assets/images/carousel/banner5.jpg' } */
-//  ];
-
   times = [];
   usuario_id = 0;
   partidas = [];
   grupos = [];
   ligas = [];
   public usuario: User_Point = <User_Point>{};
-  public config: SwiperConfigInterface = { };
+  public config: SwiperConfigInterface = {};
+  emailVerified: boolean;
 
   constructor(private apiCartolaService: ApiCartolaService,
     private ordernar: UtilService,
@@ -37,10 +30,19 @@ export class HomeComponent implements OnInit {
     public authService: AuthService,
 
   ) {
-    if (this.authService.currentUserPointValue) {
-      this.usuario = this.authService.currentUserPointValue;
-      this.usuario_id = this.usuario.id
+    if (this.authService.currentUserValue) {
+      this.emailVerified = this.authService.currentUserValue.emailVerified;
+    } else {
+      this.emailVerified = false
     }
+
+    if (this.emailVerified) {
+      if (this.authService.currentUserPointValue) {
+        this.usuario = this.authService.currentUserPointValue;
+        this.usuario_id = this.usuario.id
+      }
+    }
+
   }
 
   ngOnInit() {
@@ -50,18 +52,18 @@ export class HomeComponent implements OnInit {
 
     if (this.usuario_id != 0) {
       this.listarGruposUsuario();
-    this.listarTimeGrupoUsuario();
+      this.listarTimeGrupoUsuario();
     }
-    
+
   }
 
-   public listarLigasCartola(){
+  public listarLigasCartola() {
     this.apiCartolaService.listarLigasCartola()
-    .subscribe((resLigas) => {
-      this.ligas = resLigas;
-     })
+      .subscribe((resLigas) => {
+        this.ligas = resLigas;
+      })
 
-  } 
+  }
 
   listarPartidas() {
 
@@ -100,19 +102,19 @@ export class HomeComponent implements OnInit {
   }
 
 
-  
 
-  ngAfterViewInit(){
+
+  ngAfterViewInit() {
     this.config = {
       slidesPerView: 7,
-      spaceBetween: 16,         
+      spaceBetween: 16,
       keyboard: true,
       navigation: true,
       pagination: false,
-      grabCursor: true,  
+      grabCursor: true,
       loop: true,
       preloadImages: false,
-      lazy: true,     
+      lazy: true,
       autoplay: {
         delay: 6000,
         disableOnInteraction: false

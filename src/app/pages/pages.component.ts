@@ -14,10 +14,13 @@ import { AuthService } from '../service/auth.service';
   providers: [ SidenavMenuService ]
 })
 export class PagesComponent implements OnInit {
+  
   public showBackToTop:boolean = false; 
   public categories:Category[];
   public category:Category;
   public sidenavMenuItems:Array<any>;
+  public emailVerified: boolean;
+
   @ViewChild('sidenav', { static: true }) sidenav:any;
 
   public settings: Settings;
@@ -28,6 +31,13 @@ export class PagesComponent implements OnInit {
               public router:Router,
               @Inject(PLATFORM_ID) private platformId: Object) { 
     this.settings = this.appSettings.settings; 
+
+    if (this.authService.currentUserValue) {
+      this.emailVerified = this.authService.currentUserValue.emailVerified;
+    } else {
+      this.emailVerified = false
+    }
+
   }
 
   ngOnInit() {

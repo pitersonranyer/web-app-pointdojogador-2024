@@ -1,49 +1,51 @@
 <div class="top-menu">
 
-  <a mat-button matTooltip="Entrar" routerLink="/sign-in" *ngIf="!authService.currentUserValue as user">
+  <a mat-button matTooltip="Entrar" routerLink="/sign-in" *ngIf="!emailVerified">
     <mat-icon class="mat-icon-sm account-icon">input</mat-icon>
     <span fxShow="false" fxShow.gt-sm> ENTRAR </span>
   </a>
 
 
   <a mat-button [matMenuTriggerFor]="accountMenu" #accountMenuTrigger="matMenuTrigger">
-    <div *ngIf="authService.currentUserValue as user">
+    <div *ngIf="emailVerified">
       <mat-icon class="mat-icon-sm account-icon">person</mat-icon>
       <span fxShow="false" fxShow.gt-sm>{{ 'ACCOUNT' | translate }}</span>
       <mat-icon class="mat-icon-sm caret" iconPositionEnd>arrow_drop_down</mat-icon>
     </div>
 
   </a>
-  <mat-menu #accountMenu="matMenu" [overlapTrigger]="false" xPosition="before" class="app-dropdown account" >
-    <span (mouseleave)="accountMenuTrigger.closeMenu()" *ngIf="authService.currentUserPointValue as user">
-      <div fxLayout="row" fxLayoutAlign="space-around center" class="user-info" >
-        <img src="assets/images/others/user.jpg" alt="user-image" width="50">
-        <p> {{(user.nome) ? user.nome : 'User'}} <br> <small>Saldo: <span
-              *ngIf="settings.rtl">&rlm;</span>({{saldoUsuario}})</small></p>
-      </div>
-      <div class="divider"></div>
-      <a mat-menu-item  [routerLink]="['/gerarLigaCartola']" >
-        <mat-icon class="mat-icon-sm">settings</mat-icon>
-        <span>Gerenciar Ligas</span>
-      </a>
-      <a mat-menu-item  [routerLink]="['/carteira']" >
-        <mat-icon class="mat-icon-sm">monetization_on</mat-icon>
-        <span>Carteira</span>
-      </a>
+  <mat-menu #accountMenu="matMenu" [overlapTrigger]="false" xPosition="before" class="app-dropdown account">
+    <div *ngIf="emailVerified">
+      <span (mouseleave)="accountMenuTrigger.closeMenu()" *ngIf="authService.currentUserPointValue as user">
+        <div fxLayout="row" fxLayoutAlign="space-around center" class="user-info">
+          <img src="assets/images/others/user.jpg" alt="user-image" width="50">
+          <p> {{(user.nome) ? user.nome : 'User'}} <br> <small>Saldo: <span
+                *ngIf="settings.rtl">&rlm;</span>({{saldoUsuario}})</small></p>
+        </div>
+        <div class="divider"></div>
+        <a mat-menu-item [routerLink]="['/gerarLigaCartola']" *ngIf="user.email === 'pitersonranyer@gmail.com' ">
+          <mat-icon class="mat-icon-sm">settings</mat-icon>
+          <span>Gerenciar Ligas</span>
+        </a>
+        <a mat-menu-item [routerLink]="['/carteira']">
+          <mat-icon class="mat-icon-sm">monetization_on</mat-icon>
+          <span>Carteira</span>
+        </a>
 
-      <a mat-menu-item  [routerLink]="['/gerenciarPerfil']" *ngIf="user.email === 'pitersonranyer@gmail.com' " >
-        <mat-icon class="mat-icon-sm">person</mat-icon>
-        <span>Gerenciar Perfil</span>
-      </a>
+        <a mat-menu-item [routerLink]="['/gerenciarPerfil']" *ngIf="user.email === 'pitersonranyer@gmail.com' ">
+          <mat-icon class="mat-icon-sm">person</mat-icon>
+          <span>Gerenciar Perfil</span>
+        </a>
 
-      
-      
-      <div class="divider"></div>
-      <a mat-menu-item (click)="authService.logout()">
-        <mat-icon class="mat-icon-sm">power_settings_new</mat-icon>
-        <span>SAIR</span>
-      </a>
-    </span>
+
+
+        <div class="divider"></div>
+        <a mat-menu-item (click)="authService.logout()" *ngIf="emailVerified">
+          <mat-icon class="mat-icon-sm">power_settings_new</mat-icon>
+          <span>SAIR</span>
+        </a>
+      </span>
+    </div>
   </mat-menu>
 
 </div>

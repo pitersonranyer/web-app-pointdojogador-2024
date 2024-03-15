@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
   selector: 'app-menu',
@@ -6,8 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
+
+  public emailVerified: boolean;
   
-  constructor() { }
+  constructor(public authService: AuthService) { 
+
+    if (this.authService.currentUserValue) {
+      this.emailVerified = this.authService.currentUserValue.emailVerified;
+    } else {
+      this.emailVerified = false
+    }
+  }
 
   ngOnInit() { }
 

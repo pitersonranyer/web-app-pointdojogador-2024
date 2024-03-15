@@ -1,5 +1,4 @@
-
-<app-main-carousel *ngIf="ligas.length" [ligas]="ligas"></app-main-carousel> 
+<app-main-carousel *ngIf="ligas.length" [ligas]="ligas"></app-main-carousel>
 
 <!-- ligas -->
 <!-- <app-brands-carousel *ngIf="ligas.length" [ligas]="ligas"></app-brands-carousel>  -->
@@ -29,7 +28,7 @@
         <span class="xSpan">X</span>{{team.placar_oficial_visitante === null ? '-' : team.placar_oficial_visitante }}
       </p>
       <!---->
-      <p class="status"> Encerrada </p>
+      <p class="status" *ngIf="!team.valida"> Inválida </p>
       <p class="estadio">{{team.local}}</p>
     </div>
     <div class="time">
@@ -48,66 +47,64 @@
 </div>
 
 <!-- meus times -->
-<div class="panel">
+<div class="panel" *ngIf="emailVerified">
   <!-- div usuario logado -->
-  <div *ngIf="authService.currentUserPointValue as user">
-    <p class="panel-title">Meus Times ({{times.length}})</p>
-    <div class="card card-time" *ngFor="let time of times | slice:0:3 ; let i = index ">
-      <div class="ordem-pontuacao">
-        <p class="ordem">{{i + 1}}º</p>
-        <!---->
-      </div><img class="escudo-time-cartola" src="{{time.url_escudo_png}}">
-      <div class="nome-time-criador">
-        <p class="timeCriador">{{time.nome}}</p>
-        <p class="criador">{{time.nome_cartola}}</p>
+    <div *ngIf="authService.currentUserPointValue as user">
+      <p class="panel-title">Meus Times ({{times.length}})</p>
+      <div class="card card-time" *ngFor="let time of times | slice:0:3 ; let i = index ">
+        <div class="ordem-pontuacao">
+          <p class="ordem">{{i + 1}}º</p>
+          <!---->
+        </div><img class="escudo-time-cartola" src="{{time.url_escudo_png}}">
+        <div class="nome-time-criador">
+          <p class="timeCriador">{{time.nome}}</p>
+          <p class="criador">{{time.nome_cartola}}</p>
+        </div>
       </div>
+
+      <div *ngIf="!times.length" class="sem-dados">
+        <img src='assets/images/avatars/bola-de-futebol.png'>
+        <p>Você ainda não possui times.</p>
+        <p> <a routerLink="/meuTimeCartola" class="orange-link"> Ir para meus times</a> </p>
+      </div>
+      <a *ngIf="times.length" routerLink="/meuTimeCartola" class="orange-link"> Ver todos os times</a>
     </div>
 
-    <div *ngIf="!times.length" class="sem-dados">
+    <div *ngIf="!authService.currentUserPointValue as user" class="sem-dados">
       <img src='assets/images/avatars/bola-de-futebol.png'>
-      <p>Você ainda não possui times.</p>
-      <p> <a routerLink="/meuTimeCartola" class="orange-link"> Ir para meus times</a> </p>
+      <p> <a routerLink="/sign-in" class="orange-link"> Efetue o LOGIN para cadastrar ou conferir seus times </a> </p>
     </div>
-    <a *ngIf="times.length" routerLink="/meuTimeCartola" class="orange-link"> Ver todos os times</a>
-  </div>
-
-  <div *ngIf="!authService.currentUserPointValue as user" class="sem-dados">
-    <img src='assets/images/avatars/bola-de-futebol.png'>
-    <p> <a routerLink="/sign-in" class="orange-link"> Efetue o LOGIN para cadastrar ou conferir seus times </a> </p>
-  </div>
-
-
 </div>
 
 <!-- meus grupos -->
-<div class="panel">
+<div class="panel" *ngIf="emailVerified">
 
-  <div *ngIf="authService.currentUserPointValue as user">
-    <p class="panel-title">Meus Grupos</p>
+    <div *ngIf="authService.currentUserPointValue as user">
+      <p class="panel-title">Meus Grupos</p>
 
-    <div class="card-grupo" *ngFor="let grupo of grupos | slice:0:3">
-      <div class="logo-grupo"><img src='assets/images/avatars/grupo.png'></div>
-      <div class="info-grupo" (click)="listarTimeGrupoCartola(grupo)">
-        <p class="nome">{{grupo.nome_grupo}}</p>
-        <p class="qtd-times">{{grupo.count}}</p>
+      <div class="card-grupo" *ngFor="let grupo of grupos | slice:0:3">
+        <div class="logo-grupo"><img src='assets/images/avatars/grupo.png'></div>
+        <div class="info-grupo" (click)="listarTimeGrupoCartola(grupo)">
+          <p class="nome">{{grupo.nome_grupo}}</p>
+          <p class="qtd-times">{{grupo.count}}</p>
+        </div>
       </div>
+
+      <div *ngIf="!grupos.length" class="sem-dados">
+        <img src='assets/images/avatars/bola-de-futebol.png'>
+        <p>Você ainda não possui grupos.</p>
+        <p> <a routerLink="/meuGrupoCartola" class="orange-link"> Ir para grupos</a> </p>
+      </div>
+
+      <a *ngIf="grupos.length" routerLink="/meuGrupoCartola" class="orange-link"> Ver todos os grupos</a>
     </div>
 
-    <div *ngIf="!grupos.length" class="sem-dados">
-      <img src='assets/images/avatars/bola-de-futebol.png'>
-      <p>Você ainda não possui grupos.</p>
-      <p> <a routerLink="/meuGrupoCartola" class="orange-link"> Ir para grupos</a> </p>
+    <div *ngIf="!authService.currentUserPointValue as user" class="sem-dados">
+      <img src='assets/images/avatars/grupo.png' class="imgSemDados">
+      <p> <a routerLink="/sign-in" class="orange-link"> Efetue o LOGIN para cadastrar ou conferir seus grupos </a> </p>
     </div>
-
-    <a *ngIf="grupos.length" routerLink="/meuGrupoCartola" class="orange-link"> Ver todos os grupos</a>
   </div>
 
-  <div *ngIf="!authService.currentUserPointValue as user" class="sem-dados">
-    <img src='assets/images/avatars/grupo.png' class="imgSemDados">
-    <p> <a routerLink="/sign-in" class="orange-link"> Efetue o LOGIN para cadastrar ou conferir seus grupos </a> </p>
-  </div>
-
-</div>
 
 <!-- pontuados -->
 

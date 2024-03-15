@@ -1,0 +1,19 @@
+<mat-card fxLayout="row wrap" fxLayout="column" fxLayoutAlign="center center" class="text-center py-5">
+  <div *ngIf="authService.currentUserPointValue as user">
+    <h1 class="mt-3">Obrigado {{(user.nome) ? user.nome : 'User'}} por se registrar</h1>
+    <p class="text-muted">Enviamos um e-mail de confirmação para <strong>{{user.email}}</strong>.</p>
+    <p class="text-muted"> Verifique seu e-mail e clique no link para validar seu registro. </p>
+   
+    <div class="divider"></div>
+
+    <br>
+    <br>
+
+    <div fxLayout="row" fxLayoutAlign="space-between center" class="w-100">
+      <button mat-raised-button color="warn" type="button" routerLink="/sign-in">Efetuar Login</button>
+      <button mat-raised-button color="primary" (click)="authService.SendVerificationMail()">Reenviar email de verificação</button>
+    </div>
+  </div>
+
+</mat-card>
+

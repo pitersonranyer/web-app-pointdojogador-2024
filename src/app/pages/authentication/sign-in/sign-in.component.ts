@@ -19,13 +19,13 @@ export class SignInComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      'email': ['', Validators.compose([Validators.required, emailValidator])],
+      'email': ['', Validators.compose([Validators.required])],
       'password': ['', Validators.compose([Validators.required, Validators.minLength(6)])] 
     });
 
     this.registerForm = this.formBuilder.group({
-      'name': ['', Validators.compose([Validators.required, Validators.minLength(3)])],
-      'email': ['', Validators.compose([Validators.required, emailValidator])],
+      'name': ['', Validators.compose([Validators.required, Validators.minLength(5)])],
+      'email': ['', Validators.compose([Validators.required])],
       'password': ['', Validators.required],
       'confirmPassword': ['', Validators.required]
     },{validator: matchingPasswords('password', 'confirmPassword')});
@@ -33,14 +33,24 @@ export class SignInComponent implements OnInit {
   }
 
   public onLoginFormSubmit(values:Object):void {
-    if (this.loginForm.valid) {
-      this.router.navigate(['/']);
+    if (this.loginForm.invalid) {
+      this.snackBar.open('Email ou senha inválido!', '×', { panelClass: 'warn', verticalPosition: 'top', duration: 3000 });
+      return;
+    } else {
+      this.authService.SignIn(this.loginForm.value.email, this.loginForm.value.password)
+      .then((emailVerified) => { 
+        if (emailVerified === 'false') {
+          this.snackBar.open('Email não verificado, clique em Esqueceu a senha?', '×', { panelClass: 'warn', verticalPosition: 'top', duration: 3000 });
+          }
+      })
     }
   }
 
   public onRegisterFormSubmit(values:Object):void {
+ 
     if (this.registerForm.valid) {
-      this.snackBar.open('You registered successfully!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
+ //     this.snackBar.open('Login efetuado com sucesso!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
+      this.authService.SignUp(this.registerForm.value.email, this.registerForm.value.password, this.registerForm.value.name)
     }
   }
 

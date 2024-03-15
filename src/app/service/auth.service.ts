@@ -14,6 +14,7 @@ import {
   AngularFirestoreDocument,
 } from '@angular/fire/compat/firestore';
 import { ApiUsuarioService } from './api.usuario';
+import { MatSnackBar } from '@angular/material/snack-bar';
 //import { ToastrService } from 'ngx-toastr';
 
 
@@ -35,7 +36,7 @@ export class AuthService {
     public router: Router,
     public ngZone: NgZone, // NgZone service to remove outside scope warning
     public usuarioService: ApiUsuarioService,
-    //  private toastrService: ToastrService
+    public snackBar: MatSnackBar,
 
   ) {
     this.currentUserSubject = new BehaviorSubject<User>(
@@ -97,7 +98,7 @@ export class AuthService {
           });
           this.SetUserData(result.user);
           localStorage.setItem('currentUser', JSON.stringify(result.user));
-          this.usuarioService.recuperarUsuario(this.usuario.email)
+          this.usuarioService.recuperarUsuario(result.user.email)
             .subscribe((userPoint) => {
               localStorage.setItem('userPoint', JSON.stringify(userPoint));
               this.currentUserPoinSubject.next(userPoint);
@@ -153,7 +154,8 @@ export class AuthService {
       })
       .catch((error) => {
         //this.toastrService.error('O endereço de e-mail já está sendo usado por outra conta.');
-        window.alert('O endereço de e-mail já está sendo usado por outra conta.');
+        this.snackBar.open('O endereço de e-mail já está sendo usado por outra conta.', '×', { panelClass: 'warn', verticalPosition: 'top', duration: 3000 });
+        
       });
 
     /* .catch((error) => {
@@ -195,7 +197,7 @@ export class AuthService {
     this.afAuth.currentUser
       .then((u: any) => u.sendEmailVerification())
       .then(() => {
-        this.router.navigate(['/authentication/verify-email-address']);
+        this.router.navigate(['/verify-email-address']);
       });
   }
 

@@ -11,7 +11,7 @@
         <span class="xSpan">X</span>{{team.placar_oficial_visitante === null ? '-' : team.placar_oficial_visitante }}
       </p>
       <!---->
-      <p class="status"> Encerrada </p>
+      <p class="status" *ngIf="!team.valida"> Inválida </p>
       <p class="estadio">{{team.local}}</p>
     </div>
     <div class="time">

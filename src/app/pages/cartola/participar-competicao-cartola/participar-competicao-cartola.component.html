@@ -1,4 +1,4 @@
-<div class="panel">
+<div class="panel" *ngIf="authService.currentUserPointValue as user">
 
 
   <mat-card fxLayout="row wrap" fxLayout="column" fxLayoutAlign="center center" class="text-center py-5">
@@ -73,4 +73,10 @@
 
 
 
+</div>
+
+
+<div *ngIf="!authService.currentUserPointValue as user" class="sem-dados">
+  <img src='assets/images/avatars/bola-de-futebol.png'>
+  <p> <a routerLink="/sign-in" class="orange-link"> Efetue o LOGIN para cadastrar seu time na competição </a> </p>
 </div>

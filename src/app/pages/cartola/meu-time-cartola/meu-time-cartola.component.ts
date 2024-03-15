@@ -17,6 +17,7 @@ export class MeuTimeCartolaComponent implements OnInit {
   times = [];
   public usuario: User_Point = <User_Point>{};
   usuario_id = 0;
+  public emailVerified: boolean;
 
   public settings: Settings;
   constructor(private apiCartolaService: ApiCartolaService,
@@ -25,9 +26,17 @@ export class MeuTimeCartolaComponent implements OnInit {
     public authService: AuthService,
   ) {
     this.settings = this.appSettings.settings;
-    if (this.authService.currentUserPointValue) {
-      this.usuario = this.authService.currentUserPointValue;
-      this.usuario_id = this.usuario.id
+    if (this.authService.currentUserValue) {
+      this.emailVerified = this.authService.currentUserValue.emailVerified;
+    } else {
+      this.emailVerified = false
+    }
+
+    if (this.emailVerified) {
+      if (this.authService.currentUserPointValue) {
+        this.usuario = this.authService.currentUserPointValue;
+        this.usuario_id = this.usuario.id
+      }
     }
   }
 

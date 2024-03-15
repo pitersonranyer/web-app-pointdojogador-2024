@@ -10,59 +10,38 @@ import { ApiUsuarioService } from 'src/app/service/api.usuario';
   templateUrl: './top-menu.component.html'
 })
 export class TopMenuComponent implements OnInit {
-  public currencies = ['USD', 'EUR'];
-  public currency:any; 
+
   public saldoUsuario = 0
+  emailVerified: boolean;
 
   public settings: Settings;
-  constructor(public authService: AuthService, public appSettings:AppSettings, public appService:AppService, public translateService: TranslateService,
-    private usuarioService: ApiUsuarioService) { 
-    this.settings = this.appSettings.settings; 
-  } 
+  constructor(public authService: AuthService, public appSettings: AppSettings, public appService: AppService, public translateService: TranslateService,
+    private usuarioService: ApiUsuarioService) {
+    this.settings = this.appSettings.settings;
 
-  ngOnInit() {
-    this.currency = this.currencies[0];  
-
-    this.usuarioService.recuperarUsuario(this.authService.currentUserPointValue.email).subscribe((usuario: any) => { 
-      
-      this.saldoUsuario = usuario.saldo;
-
-      if (usuario.saldo === null) {
-        this.saldoUsuario = 0;
-      }
-
-    
-      
-     
-    });
-
+    if (this.authService.currentUserValue) {
+      this.emailVerified = this.authService.currentUserValue.emailVerified;
+    } else {
+      this.emailVerified = false
+    }
 
   }
 
-  public changeCurrency(currency){
-    this.currency = currency;
-  } 
+  ngOnInit() {
 
-  public changeLang(lang:string){ 
-    this.translateService.use(lang);   
-  } 
+    if (this.emailVerified) {
+      this.recuperarDadosUsuario();
+    }
 
-  public getLangText(lang){
-    if(lang == 'de'){
-      return 'German';
-    }
-    else if(lang == 'fr'){
-      return 'French';
-    }
-    else if(lang == 'ru'){
-      return 'Russian';
-    }
-    else if(lang == 'tr'){
-      return 'Turkish';
-    }
-    else{
-      return 'English';
-    }
-  } 
+  }
+
+  public recuperarDadosUsuario() {
+    this.usuarioService.recuperarUsuario(this.authService.currentUserPointValue.email).subscribe((usuario: any) => {
+      this.saldoUsuario = usuario.saldo;
+      if (usuario.saldo === null) {
+        this.saldoUsuario = 0;
+      }
+    });
+  }
 
 }

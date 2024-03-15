@@ -9,9 +9,9 @@
         <a mat-menu-item routerLink="/meuGrupoCartola" routerLinkActive="horizontal-active-link" [routerLinkActiveOptions]="{exact:true}">{{ 'NAV.MEU_GRUPO_CARTOLA' | translate }}</a>
         <a mat-menu-item routerLink="/atletaPontuadoCartola" routerLinkActive="horizontal-active-link" [routerLinkActiveOptions]="{exact:true}">{{ 'NAV.ATLETAS_PONTUADOS_CARTOLA' | translate }}</a>
     </mat-menu>
-
-    <a mat-button routerLink="/contact" routerLinkActive="horizontal-active-link" [routerLinkActiveOptions]="{exact:true}">{{ 'NAV.CONTACT' | translate }}</a>
-    <a mat-button routerLink="/pixCheckout" routerLinkActive="horizontal-active-link" [routerLinkActiveOptions]="{exact:true}">Pix</a>
+<!-- 
+    <a mat-button routerLink="/contact" routerLinkActive="horizontal-active-link" [routerLinkActiveOptions]="{exact:true}">{{ 'NAV.CONTACT' | translate }}</a> -->
+    <a *ngIf="emailVerified" mat-button routerLink="/pixCheckout" routerLinkActive="horizontal-active-link" [routerLinkActiveOptions]="{exact:true}">Pix</a>
     
     
 </mat-toolbar>

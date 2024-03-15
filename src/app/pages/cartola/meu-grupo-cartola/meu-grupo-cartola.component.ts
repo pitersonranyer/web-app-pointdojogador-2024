@@ -19,6 +19,7 @@ export class MeuGrupoCartolaComponent implements OnInit {
   grupos = [];
   usuario_id = 0;
   public usuario: User_Point = <User_Point>{};
+  public emailVerified: boolean;
 
   public settings: Settings;
   constructor(public dialog: MatDialog,
@@ -27,9 +28,17 @@ export class MeuGrupoCartolaComponent implements OnInit {
     private apiCartolaService: ApiCartolaService,
     private router: Router) {
     this.settings = this.appSettings.settings;
-    if (this.authService.currentUserPointValue) {
-      this.usuario = this.authService.currentUserPointValue;
-      this.usuario_id = this.usuario.id
+    if (this.authService.currentUserValue) {
+      this.emailVerified = this.authService.currentUserValue.emailVerified;
+    } else {
+      this.emailVerified = false
+    }
+
+    if (this.emailVerified) {
+      if (this.authService.currentUserPointValue) {
+        this.usuario = this.authService.currentUserPointValue;
+        this.usuario_id = this.usuario.id
+      }
     }
   }
 

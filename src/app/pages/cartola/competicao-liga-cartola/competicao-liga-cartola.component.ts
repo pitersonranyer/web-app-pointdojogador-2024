@@ -38,7 +38,7 @@ consultarMercadoStatus(){
         if(status.status_mercado === 1){
           this.aberto = true;
         }else{
-          this.aberto = true;
+          this.aberto = false;
         }
 
         this.listarCompeticaoLigaVitrine();

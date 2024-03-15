@@ -1,6 +1,6 @@
 <div class="panel">
 
-  <div *ngIf="authService.currentUserPointValue as user">
+  <div *ngIf="emailVerified">
 
     <mat-card-actions align="end">
       <button mat-button color="primary" routerLink="/addTimeFavorito">
@@ -30,7 +30,7 @@
   </div>
 
 
-  <div *ngIf="!authService.currentUserPointValue as user" class="sem-dados">
+  <div *ngIf="!emailVerified" class="sem-dados">
     <img src='assets/images/avatars/bola-de-futebol.png'>
     <p> <a routerLink="/sign-in" class="orange-link"> Efetue o LOGIN para cadastrar ou conferir seus times </a> </p>
   </div>

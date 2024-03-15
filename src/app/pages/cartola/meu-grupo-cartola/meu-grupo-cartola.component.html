@@ -1,5 +1,5 @@
 <div class="panel">
-  <div *ngIf="authService.currentUserPointValue as user">
+  <div *ngIf="emailVerified">
     <mat-card-actions align="end">
   
       <button mat-button color="primary" (click)="openCriaDialog()">
@@ -32,7 +32,7 @@
     </div>
   </div>
 
-  <div *ngIf="!authService.currentUserPointValue as user" class="sem-dados">
+  <div *ngIf="!emailVerified" class="sem-dados">
     <img src='assets/images/avatars/grupo.png' class="imgSemDados">
     <p> <a routerLink="/sign-in" class="orange-link"> Efetue o LOGIN para cadastrar ou conferir seus grupos </a> </p>
   </div>

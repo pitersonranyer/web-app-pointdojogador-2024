@@ -21,7 +21,7 @@ export class ParticiparCompeticaoCartolaComponent implements OnInit {
 
   times!: any[];
   public usuario: User_Point = <User_Point>{};
-  usuario_id = 1;
+  usuario_id = 0;
   selectAll = false;
   public toggleSearchBar: boolean = false;
   filterText!: string;
@@ -29,7 +29,7 @@ export class ParticiparCompeticaoCartolaComponent implements OnInit {
   timeFilter = [];
   timeSelecaoSalvar = [];
   competicao: any;
-  count =  0;
+  count = 0;
   saldoUsuario = 0
 
 
@@ -53,9 +53,10 @@ export class ParticiparCompeticaoCartolaComponent implements OnInit {
       this.competicao = params;
     });
 
-
-    this.listarMeusTimesFavoritos();
-    this.recuperarDadosUsuario();
+    if (this.authService.currentUserPointValue) {
+      this.listarMeusTimesFavoritos();
+      this.recuperarDadosUsuario();
+    }
 
 
   }
@@ -125,7 +126,7 @@ export class ParticiparCompeticaoCartolaComponent implements OnInit {
 
   salvarTimes() {
 
-    
+
 
     this.count = 0
     this.timeSelecaoSalvar = [];
@@ -154,7 +155,7 @@ export class ParticiparCompeticaoCartolaComponent implements OnInit {
       saldoDev: 10000 - saldoWork,
     }
 
-  
+
 
     this.alertSalvarTimes(resumo);
 
@@ -175,7 +176,7 @@ export class ParticiparCompeticaoCartolaComponent implements OnInit {
 
   }
 
-   alertSalvarTimes(resumo: any){
+  alertSalvarTimes(resumo: any) {
     const dialogRef = this.dialog.open(ResumoSaldoDialogComponent, {
       data: {
         resumo: resumo,
@@ -184,8 +185,8 @@ export class ParticiparCompeticaoCartolaComponent implements OnInit {
       autoFocus: false,
       direction: (this.settings.rtl) ? 'rtl' : 'ltr'
     });
-    dialogRef.afterClosed().subscribe(category => { 
-      if(category){    
+    dialogRef.afterClosed().subscribe(category => {
+      if (category) {
         console.log(category);
       }
     });
