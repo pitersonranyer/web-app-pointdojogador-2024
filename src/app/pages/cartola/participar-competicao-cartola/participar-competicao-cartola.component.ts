@@ -9,6 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AppSettings, Settings } from 'src/app/app.settings';
 import { ImportaTimeFavoritoDialogComponent } from '../meu-time-cartola/importa-time-favorito-dialog/importa-time-favorito-dialog.component';
 import { ResumoSaldoDialogComponent } from './resumo-saldo-dialog/resumo-saldo-dialog.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 
@@ -38,7 +39,9 @@ export class ParticiparCompeticaoCartolaComponent implements OnInit {
   public settings: Settings;
   constructor(private router: Router,
     private route: ActivatedRoute,
-    private apiCartolaService: ApiCartolaService, public authService: AuthService, private usuarioService: ApiUsuarioService, public dialog: MatDialog, public appSettings: AppSettings) {
+    private apiCartolaService: ApiCartolaService, public authService: AuthService, 
+    private usuarioService: ApiUsuarioService, public dialog: MatDialog, 
+    public appSettings: AppSettings, public snackBar: MatSnackBar) {
     this.settings = this.appSettings.settings;
     if (this.authService.currentUserPointValue) {
       this.usuario = this.authService.currentUserPointValue;
@@ -126,11 +129,8 @@ export class ParticiparCompeticaoCartolaComponent implements OnInit {
 
   salvarTimes() {
 
-
-
     this.count = 0
     this.timeSelecaoSalvar = [];
-
 
     for (let i = 0; i < this.times.length; i++) {
       if (this.times[i].checked) {
@@ -144,39 +144,23 @@ export class ParticiparCompeticaoCartolaComponent implements OnInit {
       slugs: this.timeSelecaoSalvar,
     }
 
-    console.log(this.count);
-    console.log(this.competicao.valor_competicao);
 
     let saldoWork = this.count * this.competicao.valor_competicao;
 
 
     let resumo = {
+      usuario: this.usuario,
       qtde_time: this.count,
-      saldoDev: 10000 - saldoWork,
+      saldoDev: this.usuario.saldo - saldoWork,
+      saldoAtu: saldoWork,
     }
 
 
-
-    this.alertSalvarTimes(resumo);
-
-    /* this.usuarioService.debitarSaldoUsuario(this.usuario)
-      .subscribe((debitou) => {
-
-        if (debitou) {
-
-          this.apiCartolaService.addTimeCompeticaoCartola(parmTimeCompeticao)
-            .subscribe((retTimes) => {
-
-            })
-
-        }
-
-      }); 
- */
+    this.alertSalvarTimes(resumo, parmTimeCompeticao);
 
   }
 
-  alertSalvarTimes(resumo: any) {
+  alertSalvarTimes(resumo: any, parmTimeCompeticao: any) {
     const dialogRef = this.dialog.open(ResumoSaldoDialogComponent, {
       data: {
         resumo: resumo,
@@ -185,9 +169,16 @@ export class ParticiparCompeticaoCartolaComponent implements OnInit {
       autoFocus: false,
       direction: (this.settings.rtl) ? 'rtl' : 'ltr'
     });
-    dialogRef.afterClosed().subscribe(category => {
-      if (category) {
-        console.log(category);
+    dialogRef.afterClosed().subscribe(ok => {
+      if (ok) {
+        this.apiCartolaService.addTimeCompeticaoCartola(parmTimeCompeticao)
+        .subscribe((add) => {
+          if (add){
+            this.snackBar.open('Times adicionados com sucesso.', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
+            this.listarMeusTimesFavoritos();
+            this.recuperarDadosUsuario();
+          }
+        });
       }
     });
   }

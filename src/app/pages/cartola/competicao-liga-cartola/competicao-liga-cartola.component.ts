@@ -15,6 +15,7 @@ export class CompeticaoLigaCartolaComponent implements OnInit {
   competicao: any;
   aberto = false;
   competicoes = [];
+  rodada = 0;
 
   constructor( private route: ActivatedRoute, private apiCartolaService: ApiCartolaService, private router: Router) { }
 
@@ -25,7 +26,6 @@ export class CompeticaoLigaCartolaComponent implements OnInit {
     });
 
     this.consultarMercadoStatus();
-
    
    
   }
@@ -35,12 +35,12 @@ consultarMercadoStatus(){
 
   this.apiCartolaService.consultarMercadoStatus()
       .subscribe((status) => {
+        this.rodada = status.rodada_atual;
         if(status.status_mercado === 1){
           this.aberto = true;
         }else{
           this.aberto = false;
         }
-
         this.listarCompeticaoLigaVitrine();
       })
 

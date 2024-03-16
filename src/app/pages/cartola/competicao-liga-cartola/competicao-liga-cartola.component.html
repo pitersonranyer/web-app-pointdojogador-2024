@@ -1,10 +1,21 @@
 <div class="card-competicao" *ngFor="let competicao of competicoes">
+  
   <div class="logo-competicao"><img src={{competicao.path_image}}></div>
   <div class="info-competicao">
-    <div class="situacao-liga">
+    <div class="foto-jogador-escudo-time">
       <mat-chip-option color="primary" highlighted selectable="false">R${{competicao.valor_competicao}}</mat-chip-option>
+    </div>
+    <div class="situacao-liga">
       &nbsp;&nbsp;
-      <mat-chip-option color="warn" highlighted selectable="false">#35 {{competicao.status_liga}}</mat-chip-option>
+      <mat-chip-option *ngIf="aberto" class="color-chip"  highlighted selectable="false">#{{rodada}} {{competicao.status_liga}}</mat-chip-option>
+      <mat-chip-option *ngIf="!aberto" color="warn"  highlighted selectable="false">#{{rodada}} {{competicao.status_liga}}</mat-chip-option>
+      &nbsp;&nbsp;
+      
+        <mat-chip-option class="color-parcial"  highlighted selectable="false" (click)="viewTimesCompeticao(competicao)">
+          <mat-icon class="visibility">visibility</mat-icon>
+         Ver parcial 
+      </mat-chip-option>
+
     </div>
     <p class="nome">{{competicao.tipo_liga}}</p>
     <p fxLayout="row" fxLayoutAlign="start center">
