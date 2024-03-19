@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit {
   partidas = [];
   grupos = [];
   ligas = [];
+  provaveis = [];
   public usuario: User_Point = <User_Point>{};
   public config: SwiperConfigInterface = {};
   emailVerified: boolean;
@@ -48,7 +49,8 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
 
     this.listarPartidas();
-    this.listarLigasCartola()
+    this.listarLigasCartola();
+    this.listarAtletasProvaveis();
 
     if (this.usuario_id != 0) {
       this.listarGruposUsuario();
@@ -98,6 +100,15 @@ export class HomeComponent implements OnInit {
   listarTimeGrupoCartola(grupo: any) {
 
     this.router.navigate(['/listarTimeGrupoCartola'], { queryParams: grupo });
+
+  }
+
+  listarAtletasProvaveis(){
+
+    this.apiCartolaService.listarAtletasProvaveis()
+      .subscribe((provaveis) => {
+        this.provaveis = provaveis;
+      })
 
   }
 

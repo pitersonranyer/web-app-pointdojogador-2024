@@ -106,6 +106,41 @@
   </div>
 
 
+<!-- prováveis -->
+
+<div class="panel">
+  <p class="panel-title">Prováveis</p>
+
+  <div class="card-jogador" *ngFor="let provavel of provaveis | slice:0:3">
+    <div class="posicao-campo red">
+      <p>{{provavel.abreviacaoPosicao}}</p>
+    </div>
+
+    <div class="foto-jogador-escudo-time"><img onerror="this.src='assets/png/avatar-jogador.png';this.onerror=null;"
+        class="foto-jogador"
+        src="{{provavel.foto}}"><img
+        class="escudo-time ng-star-inserted"
+        src="{{provavel.escudoClube}}">
+
+    </div>
+
+    <div class="flex-row">
+      <div class="nome-time-jogador">
+        <span class="nome-jogador">{{provavel.apelido}}</span>
+        <span class="time">{{provavel.nomeClube}}</span>
+      </div>
+      
+      <p class="pontosjogador"><span class="titulo">Situação</span><span class="text-green">{{provavel.statusNome}}</span></p>
+
+    </div>
+  </div>
+
+  
+
+  <a routerLink="/provaveis" class="orange-link" > Ver todos os jogadores</a>
+
+</div>
+
 <!-- pontuados -->
 
 <!-- <div class="panel">

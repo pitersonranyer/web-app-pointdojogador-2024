@@ -27,6 +27,7 @@ export const routes: Routes = [
             { path: 'viewTimesCompeticao', loadChildren: () => import('./pages/cartola/listar-time-competicao/listar-time-competicao.module').then(m => m.ListarTimeCompeticaoModule), data: { breadcrumb: 'Times Competição' } },
             { path: 'carteira', loadChildren: () => import('./pages/carteira/carteira.module').then(m => m.CarteiraModule), data: { breadcrumb: 'Carteira' } },
             { path: 'gerenciarPerfil', loadChildren: () => import('./pages/gerenciar-perfil/gerenciar-perfil.module').then(m => m.CarteiraModule), data: { breadcrumb: 'Gerenciar Perfil' } },
+            { path: 'provaveis', loadChildren: () => import('./pages/cartola/atleta-provavel/atleta-provavel.module').then(m => m.AtletProvavelModule), data: { breadcrumb: 'Prováveis' } },
 
             { path: 'sign-in', loadChildren: () => import('./pages/authentication/sign-in/sign-in.module').then(m => m.SignInModule), data: { breadcrumb: 'Sign In ' } },
             { path: 'verify-email-address', loadChildren: () => import('./pages/authentication/verify-email/verify-email.module').then(m => m.VerifyEmailModule), data: { breadcrumb: 'Verifica email' } },

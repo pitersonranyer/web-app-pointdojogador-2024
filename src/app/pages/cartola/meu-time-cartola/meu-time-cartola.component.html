@@ -3,11 +3,12 @@
   <div *ngIf="emailVerified">
 
     <mat-card-actions align="end">
-      <button mat-button color="primary" routerLink="/addTimeFavorito">
+      <button mat-button color="primary" class="icon-button" routerLink="/addTimeFavorito">
         <mat-icon>add</mat-icon>
         Buscar
       </button>
-      <button mat-button (click)="openImportaDialog()">
+
+      <button mat-button class="icon-button" (click)="openImportaDialog()">
         <mat-icon>get_app</mat-icon>
         Importar
       </button>

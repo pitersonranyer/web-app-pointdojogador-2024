@@ -137,4 +137,9 @@ export class ApiCartolaService {
   }
 
 
+  listarAtletasProvaveis(): Observable<any> {
+    const url = this.utilService.getUrlBackend() + `/cartolaAPI/listarAtletasProvaveis`;
+    return this.http.get<any[]>(url);
+  }
+
 }
