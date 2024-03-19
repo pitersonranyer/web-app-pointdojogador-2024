@@ -8,24 +8,28 @@
     <app-sidenav-menu [menuItems]="sidenavMenuItems" [menuParentId]="0"></app-sidenav-menu>
     <div class="divider"></div>
 
-    <div *ngIf="!emailVerified">
-      <h4 style="text-align: center;">Faça login com um clique</h4>
-      <div class="text-center py-2">
-        <svg (click)="authService.GoogleAuth()" class="social-icon" viewBox="0 0 24 24">
-          <path
-            d="M5,3H19A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3M19.5,12H18V10.5H17V12H15.5V13H17V14.5H18V13H19.5V12M9.65,11.36V12.9H12.22C12.09,13.54 11.45,14.83 9.65,14.83C8.11,14.83 6.89,13.54 6.89,12C6.89,10.46 8.11,9.17 9.65,9.17C10.55,9.17 11.13,9.56 11.45,9.88L12.67,8.72C11.9,7.95 10.87,7.5 9.65,7.5C7.14,7.5 5.15,9.5 5.15,12C5.15,14.5 7.14,16.5 9.65,16.5C12.22,16.5 13.96,14.7 13.96,12.13C13.96,11.81 13.96,11.61 13.89,11.36H9.65Z" />
-        </svg>
+    <div *ngIf="authService.currentUserValue as user">
+      <div *ngIf="!user.emailVerified">
+        <h4 style="text-align: center;">Faça login com um clique</h4>
+        <div class="text-center py-2">
+          <svg (click)="authService.GoogleAuth()" class="social-icon" viewBox="0 0 24 24">
+            <path
+              d="M5,3H19A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3M19.5,12H18V10.5H17V12H15.5V13H17V14.5H18V13H19.5V12M9.65,11.36V12.9H12.22C12.09,13.54 11.45,14.83 9.65,14.83C8.11,14.83 6.89,13.54 6.89,12C6.89,10.46 8.11,9.17 9.65,9.17C10.55,9.17 11.13,9.56 11.45,9.88L12.67,8.72C11.9,7.95 10.87,7.5 9.65,7.5C7.14,7.5 5.15,9.5 5.15,12C5.15,14.5 7.14,16.5 9.65,16.5C12.22,16.5 13.96,14.7 13.96,12.13C13.96,11.81 13.96,11.61 13.89,11.36H9.65Z" />
+          </svg>
+        </div>
+        <h4 class="text-muted text-center mb-3"> <a routerLink="/sign-in"> Não tem uma conta? Inscreva-se agora! </a>
+        </h4>
       </div>
-      <h4  class="text-muted text-center mb-3"> <a routerLink="/sign-in"> Não tem uma conta? Inscreva-se agora! </a> </h4>
-      
-    </div>
-   
-    <div class="divider"></div>
-    <div *ngIf="emailVerified">
-      <a mat-menu-item (click)="authService.logout()">
-        <mat-icon class="mat-icon-sm">power_settings_new</mat-icon>
-        <span>SAIR</span>
-      </a>
+
+      <div class="divider"></div>
+
+      <div *ngIf="user.emailVerified">
+        <a mat-menu-item (click)="authService.logout()">
+          <mat-icon class="mat-icon-sm">power_settings_new</mat-icon>
+          <span>SAIR</span>
+        </a>
+      </div>
+
     </div>
 
   </mat-sidenav>
@@ -37,8 +41,10 @@
           <mat-icon class="mat-icon-md mr-0">menu</mat-icon>
         </button>
       </span>
-      <span fxShow="false" fxShow.gt-xs fxLayoutAlign="center center"><mat-icon class="mat-icon-sm">call</mat-icon>
-        Fone: (+55) 61 98210-4100 </span>
+      <span fxShow="false" fxShow.gt-xs fxLayoutAlign="center center">
+        <mat-icon class="mat-icon-sm">call</mat-icon>
+        Fone: (+55) 61 98210-4100
+      </span>
       <span fxShow="false" fxShow.gt-sm>{{ 'WELCOME' | translate }}</span>
       <app-top-menu></app-top-menu>
     </mat-toolbar-row>
@@ -58,7 +64,7 @@
     <router-outlet></router-outlet>
   </div>
 
- <!--  <app-options></app-options> -->
+  <!--  <app-options></app-options> -->
   <app-footer></app-footer>
 
   <div *ngIf="showBackToTop" fxLayout="row" fxLayoutAlign="center center" class="back-to-top transition"

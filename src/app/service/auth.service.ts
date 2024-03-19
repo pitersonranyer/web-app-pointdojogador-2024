@@ -1,4 +1,3 @@
-
 import { User_Point } from './../models/user_point';
 import { Injectable, NgZone } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
@@ -66,8 +65,6 @@ export class AuthService {
   // Returns true when user is looged in and email is verified
   get isLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem('currentUser')!);
-    console.log('user.emailVerified', user.emailVerified);
-    //   console.log('user', user);
     return user !== null && user.emailVerified !== false ? true : false;
   }
 
@@ -91,17 +88,14 @@ export class AuthService {
     return this.afAuth
       .signInWithEmailAndPassword(email, password)
       .then((result) => {
-
         if (result.user.emailVerified) {
-          this.ngZone.run(() => {
-            this.router.navigate(['']);
-          });
           this.SetUserData(result.user);
-          localStorage.setItem('currentUser', JSON.stringify(result.user));
           this.usuarioService.recuperarUsuario(result.user.email)
             .subscribe((userPoint) => {
+              localStorage.setItem('currentUser', JSON.stringify(result.user));
               localStorage.setItem('userPoint', JSON.stringify(userPoint));
               this.currentUserPoinSubject.next(userPoint);
+              this.router.navigate(['']);
             })
           this.currentUserSubject.next(result.user);
 
@@ -137,7 +131,6 @@ export class AuthService {
       .then((result) => {
         /* Call the SendVerificationMail() function when new user sign
          up and returns promise */
-        this.SendVerificationMail();
         this.updateProfile(displayName);
         this.currentUserSubject.next(result.user);
         this.usuario.uid = result.user.uid;
@@ -150,12 +143,13 @@ export class AuthService {
             localStorage.setItem('currentUser', JSON.stringify(result.user));
             localStorage.setItem('userPoint', JSON.stringify(userPoint));
             this.currentUserPoinSubject.next(userPoint);
+            this.SendVerificationMail();
           })
       })
       .catch((error) => {
         //this.toastrService.error('O endereço de e-mail já está sendo usado por outra conta.');
         this.snackBar.open('O endereço de e-mail já está sendo usado por outra conta.', '×', { panelClass: 'warn', verticalPosition: 'top', duration: 3000 });
-        
+
       });
 
     /* .catch((error) => {
@@ -249,7 +243,7 @@ export class AuthService {
       });
   }
 
-  
+
 
   /* Setting up user data when sign in with username/password, 
   sign up with username/password and sign in with social auth  
@@ -273,4 +267,3 @@ export class AuthService {
   }
 
 }
-

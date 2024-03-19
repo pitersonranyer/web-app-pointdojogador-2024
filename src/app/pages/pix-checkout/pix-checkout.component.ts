@@ -18,8 +18,14 @@ export class PixCheckoutComponent implements OnInit {
   qrcodeTela = '';
   pixCopyPaste = '';
   btnCopy = false ;
+  emailVerified: boolean;
 
   constructor(fb: FormBuilder, private gerarQrCodeService: ApiPixService, public authService: AuthService) {
+    if (this.authService.currentUserValue) {
+      this.emailVerified = this.authService.currentUserValue.emailVerified;
+    } else {
+      this.emailVerified = false
+    }
     this.form = fb.group({
       valorPixCurrency: [''],
       descPixCr: ['']

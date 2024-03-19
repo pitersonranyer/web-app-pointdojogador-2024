@@ -12,24 +12,17 @@ import { ApiUsuarioService } from 'src/app/service/api.usuario';
 export class TopMenuComponent implements OnInit {
 
   public saldoUsuario = 0
-  emailVerified: boolean;
 
   public settings: Settings;
   constructor(public authService: AuthService, public appSettings: AppSettings, public appService: AppService, public translateService: TranslateService,
     private usuarioService: ApiUsuarioService) {
     this.settings = this.appSettings.settings;
 
-    if (this.authService.currentUserValue) {
-      this.emailVerified = this.authService.currentUserValue.emailVerified;
-    } else {
-      this.emailVerified = false
-    }
-
   }
 
   ngOnInit() {
 
-    if (this.emailVerified) {
+    if (this.authService.currentUserValue){
       this.recuperarDadosUsuario();
     }
 

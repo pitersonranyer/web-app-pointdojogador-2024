@@ -1,13 +1,13 @@
-<div class="top-menu">
+<div class="top-menu" *ngIf="authService.currentUserValue as user">
 
-  <a mat-button matTooltip="Entrar" routerLink="/sign-in" *ngIf="!emailVerified">
+  <a mat-button matTooltip="Entrar" routerLink="/sign-in" *ngIf="!user.emailVerified">
     <mat-icon class="mat-icon-sm account-icon">input</mat-icon>
     <span fxShow="false" fxShow.gt-sm> ENTRAR </span>
   </a>
 
 
   <a mat-button [matMenuTriggerFor]="accountMenu" #accountMenuTrigger="matMenuTrigger">
-    <div *ngIf="emailVerified">
+    <div *ngIf="user.emailVerified">
       <mat-icon class="mat-icon-sm account-icon">person</mat-icon>
       <span fxShow="false" fxShow.gt-sm>{{ 'ACCOUNT' | translate }}</span>
       <mat-icon class="mat-icon-sm caret" iconPositionEnd>arrow_drop_down</mat-icon>
@@ -15,11 +15,11 @@
 
   </a>
   <mat-menu #accountMenu="matMenu" [overlapTrigger]="false" xPosition="before" class="app-dropdown account">
-    <div *ngIf="emailVerified">
-      <span (mouseleave)="accountMenuTrigger.closeMenu()" *ngIf="authService.currentUserPointValue as user">
+    <div *ngIf="user.emailVerified">
+      <span (mouseleave)="accountMenuTrigger.closeMenu()" >
         <div fxLayout="row" fxLayoutAlign="space-around center" class="user-info">
           <img src="assets/images/others/user.jpg" alt="user-image" width="50">
-          <p> {{(user.nome) ? user.nome : 'User'}} <br> <small>Saldo: <span
+          <p> {{(user.displayName) ? user.displayName : 'User'}} <br> <small>Saldo: <span
                 *ngIf="settings.rtl">&rlm;</span>({{saldoUsuario}})</small></p>
         </div>
         <div class="divider"></div>
@@ -40,12 +40,22 @@
 
 
         <div class="divider"></div>
-        <a mat-menu-item (click)="authService.logout()" *ngIf="emailVerified">
+        <a mat-menu-item (click)="authService.logout()" *ngIf="user.emailVerified">
           <mat-icon class="mat-icon-sm">power_settings_new</mat-icon>
           <span>SAIR</span>
         </a>
       </span>
     </div>
   </mat-menu>
+
+</div>
+
+
+<div class="top-menu"  *ngIf="!authService.currentUserValue as user">
+
+  <a mat-button matTooltip="Entrar" routerLink="/sign-in" >
+    <mat-icon class="mat-icon-sm account-icon">input</mat-icon>
+    <span fxShow="false" fxShow.gt-sm> ENTRAR </span>
+  </a>
 
 </div>
