@@ -1,6 +1,6 @@
 <div class="card-competicao" *ngFor="let competicao of competicoes">
-  
-  <div class="logo-competicao"><img src={{competicao.path_image}}></div>
+                                    
+    <div class="logo-competicao"><img [src]="'assets/images/logoCompeticao/'+competicao.liga_id+'.png'" ></div>
   <div class="info-competicao">
     <div class="foto-jogador-escudo-time">
       <mat-chip-option color="primary" highlighted selectable="false">R${{competicao.valor_competicao}}</mat-chip-option>
