@@ -111,28 +111,38 @@
 <div class="panel">
   <p class="panel-title">Prováveis</p>
 
-  <div class="card-jogador" *ngFor="let provavel of provaveis | slice:0:3">
-    <div class="posicao-campo red">
-      <p>{{provavel.abreviacaoPosicao}}</p>
-    </div>
-
-    <div class="foto-jogador-escudo-time"><img onerror="this.src='assets/png/avatar-jogador.png';this.onerror=null;"
-        class="foto-jogador"
-        src="{{provavel.foto}}"><img
-        class="escudo-time ng-star-inserted"
-        src="{{provavel.escudoClube}}">
-
-    </div>
-
-    <div class="flex-row">
-      <div class="nome-time-jogador">
-        <span class="nome-jogador">{{provavel.apelido}}</span>
-        <span class="time">{{provavel.nomeClube}}</span>
+  <div *ngFor="let clube of provaveis | slice:0:2">
+    <div class="eventlist-country">
+      <div class="boxFlag">
+        <img src="{{clube.escudoClube}}">
       </div>
-      
-      <p class="pontosjogador"><span class="titulo">Situação</span><span class="text-green">{{provavel.statusNome}}</span></p>
-
+      <span class="nameEventlist">{{clube.nome_fantasia}}</span>
     </div>
+    <mat-divider></mat-divider>
+
+    <div class="card-jogador" *ngFor="let atletas of clube.atletas">
+      <div class="posicao-campo red">
+        <p>{{atletas.abreviacaoPosicao}}</p>
+      </div>
+
+      <div class="foto-jogador-escudo-time"><img onerror="this.src='assets/png/avatar-jogador.png';this.onerror=null;"
+          class="foto-jogador" src="{{atletas.foto}}"><img class="escudo-time ng-star-inserted"
+          src="{{atletas.escudoClube}}">
+
+      </div>
+
+      <div class="flex-row">
+        <div class="nome-time-jogador">
+          <span class="nome-jogador">{{atletas.apelido}}</span>
+          <span class="time">{{atletas.nomeClube}}</span>
+        </div>
+
+        <p class="pontosjogador"><span class="titulo">Situação</span><span
+            class="text-green">{{atletas.statusNome}}</span></p>
+
+      </div>
+    </div>
+
   </div>
 
   

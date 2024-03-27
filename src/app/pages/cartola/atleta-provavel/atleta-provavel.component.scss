@@ -143,3 +143,18 @@
     font-size: 12px;
     font-weight: 400;
 }
+
+//piter
+.eventlist-country {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: 45px;
+    background-color: rgb(240, 234, 234);
+  }
+  
+  .boxFlag {
+    width: 30px;
+    height: 30px;
+  }
