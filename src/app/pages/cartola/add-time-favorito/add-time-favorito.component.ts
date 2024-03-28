@@ -40,18 +40,23 @@ export class AddTimeFavoritoComponent implements OnInit {
     text = text.replace(new RegExp('[ÓÒÔÕ]','gi'), 'o');
     text = text.replace(new RegExp('[ÚÙÛ]','gi'), 'u');
     text = text.replace(new RegExp('[Ç]','gi'), 'c');
+    text = text.replace(new RegExp('%','gi'), ' ');
     return text;  
 
   }
 
   listarTimesPorNome() {
-/*     console.log('chegou')
-    let teste = this.removeAcento(this.nomeTime);
-    console.log(teste); */
 
-    let nomeTimeSemAcento = this.nomeTime.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+    let nomeTimeSemAcento = this.removeAcento(this.nomeTime);
 
-    this.apiCartolaService.buscarTimesFavoritoPorNome(nomeTimeSemAcento)
+
+   // let nomeTimeSemAcento = this.nomeTime.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+
+    let time = {
+      nome_time: nomeTimeSemAcento
+    }; 
+
+    this.apiCartolaService.buscarTimesFavoritoPorNome(time)
       .subscribe((listaTimes) => {
         this.times = listaTimes;
       });

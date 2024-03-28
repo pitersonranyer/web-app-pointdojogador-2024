@@ -60,9 +60,9 @@ export class ApiCartolaService {
     return this.http.get<any[]>(url);
   }
 
-  buscarTimesFavoritoPorNome(nomeTime: string): Observable<any[]> {
-    const url = this.utilService.getUrlBackend() + `/timeFavorito/listarTimesFavoritoPorNome/${nomeTime}`;
-    return this.http.get<any[]>(url);
+  buscarTimesFavoritoPorNome(time: any) {
+    const url = this.utilService.getUrlBackend() + `/timeFavorito/listarTimesFavoritoPorNome`;
+    return this.http.post<any[]>(url, time);
   }
 
   addTimeFavoritoCartola(parm: any) {
